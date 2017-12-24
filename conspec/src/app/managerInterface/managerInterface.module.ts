@@ -4,13 +4,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { ManagerInterfaceComponent } from './managerInterface.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component'
-import { ToolbarComponent } from './components/toolbar/toolbar.component'
+import { NavbarComponent } from './components/navbar/navbar.component'
 
 
 @NgModule({
   declarations: [
     ManagerInterfaceComponent,
-    ToolbarComponent,
+    NavbarComponent,
     SidebarComponent
   ],
   imports: [
