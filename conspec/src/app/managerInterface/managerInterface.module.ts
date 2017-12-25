@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { ManagerInterfaceComponent } from './managerInterface.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component'
-import { NavbarComponent } from './components/navbar/navbar.component'
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+import {ManagerInterfaceRoutingModule} from './managerInterface-routing.module';
+import { MemberManagerModule } from "./memberManager/memberManager.module";
 
 
 @NgModule({
@@ -15,6 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component'
   ],
   imports: [
     AngularFontAwesomeModule,
+    ManagerInterfaceRoutingModule,
+    MemberManagerModule,
   ],
   providers: [],
 })
