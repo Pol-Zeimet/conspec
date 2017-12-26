@@ -8,6 +8,7 @@ function createWindow () {
     backgroundColor: '#ffffff',
     icon: `file://${__dirname}/dist/assets/logo.png`
   })
+  win.setMenu(null);
   win.loadURL(`file://${__dirname}/dist/index.html`)
   
   //// uncomment below to open the DevTools.

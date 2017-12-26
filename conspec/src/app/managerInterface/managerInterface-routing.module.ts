@@ -9,6 +9,7 @@ const routes: Routes = [
     children: [
         { path: '',         redirectTo: 'members', pathMatch: 'full' },
         { path: 'members',  loadChildren:  './memberManager/memberManager.module#MemberManagerModule' },
+        { path: 'sessions', loadChildren: './sessionPlanner/sessionPlanner.module#SessionPlannerModule'}
     ]
     }
    
