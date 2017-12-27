@@ -6,10 +6,15 @@
         <li class="list-group-item">
             <i class = "fa fa-book"></i>
             Your Classes
+            <ul>
+                <li *ngFor='let class of classes'>
+                    {{class.name}}
+                </li>
+            </ul>
         </li>
-        <li class="list-group-item"> 
+        <li class="list-group-item" (click) = "addClass()"> 
             <i class = "fa fa-plus-circle"></i>
-            Add new Class 
+            Add new Class
         </li>
     </ul>
 </nav>

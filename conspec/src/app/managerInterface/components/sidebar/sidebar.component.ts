@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
+import { ClassesService } from "../../../shared/services/classesService";
+import { Class, Member } from "../../../shared/models";
 
 @Component({
     selector: 'manager-sidebar',
@@ -6,14 +8,26 @@ import { Component } from "@angular/core";
     styleUrls: []
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
     
-    constructor() {}
-
-    isActive: boolean = false;
-    showMenu: string = '';
-
-    eventCalled() {
-        this.isActive = !this.isActive;
+    int: number = 0;
+    classes: Class[];
+    
+    constructor(private classesService: ClassesService) {
     }
+    
+    ngOnInit(){
+        this.classes = new Array<Class>();
+    }
+
+    addClass(){
+
+        var newClass= new Class();
+        newClass.name = 'Training' + this.int;
+        this.int++;
+        newClass = this.classesService.persistClass(newClass);
+        this.classes.push(newClass); 
+        
+    }
+
 }
