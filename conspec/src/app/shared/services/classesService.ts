@@ -15,19 +15,36 @@ export class ClassesService {
         }
     }
 
+    getAllClasses(): Class[]{
+        var classes = new Array<Class>()
+        this.db.find({}, function(err, newDoc){
+            if(newDoc){
+                console.log(newDoc)
+                newDoc.forEach(element => {
+                    console.log(element)
+                    try{
+                        classes.push(element as Class)
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }) 
+            } else {
+                console.log(err)
+            }
+        })
+        return classes
+    }
+
     persistClass(classToPersist: Class): Class{
-        classToPersist;
-        if(this.electronService.isElectronApp){
-            this.db.insert(classToPersist, function(err, newDoc){
-                if (newDoc){
-                    classToPersist._id =  newDoc._id;
-                    console.log('assigned _id ' + classToPersist._id + ' to '+ classToPersist.name)
-                }
-                else{
-                    console.log(err)
-                }
-            });
-            return classToPersist;
-        }
+        this.db.insert(classToPersist, function(err, newDoc){
+            if (newDoc){
+                classToPersist._id =  newDoc._id;
+                console.log('assigned _id ' + classToPersist._id + ' to '+ classToPersist.name)
+            }
+            else{
+                console.log(err)
+            }
+        });
+        return classToPersist;
     }
 }

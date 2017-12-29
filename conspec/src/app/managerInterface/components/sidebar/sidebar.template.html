@@ -7,7 +7,7 @@
             <i class = "fa fa-book"></i>
             Your Classes
             <ul>
-                <li *ngFor='let class of classes'>
+                <li *ngFor='let class of classes' (click)="selectClass(class)">
                     {{class.name}}
                 </li>
             </ul>

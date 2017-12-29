@@ -10,8 +10,8 @@ export class Session{
     participants: Member[];
 
     constructor(){
-        this.date = undefined;
-        this.participants = undefined;
-        this.topic = undefined;
+        this.date = new Date('00/00/2000');
+        this.participants = [];
+        this.topic = '';
     }
 }

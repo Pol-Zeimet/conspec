@@ -9,13 +9,13 @@ export class Class{
     name:String;
     members: Member[];
     sessions: Session[];
-    shedule: Date;
+    shedule: String;
 
     constructor(){
         this._id = undefined; //will be assigned by db
-        this.name = undefined;
-        this.members = undefined;
-        this.sessions = undefined;
-        this.shedule = undefined;
+        this.name = '';
+        this.members = [];
+        this.sessions = [];
+        this.shedule = '';
     }
 }

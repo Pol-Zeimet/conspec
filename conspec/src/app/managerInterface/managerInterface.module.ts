@@ -11,7 +11,7 @@ import { MemberManagerModule } from "./memberManager/memberManager.module";
 import { SessionPlannerModule } from './sessionPlanner/sessionPlanner.module';
 
 import {ClassesService} from '../shared/services/classesService';
-
+import { TransmitterService } from "../shared/services/transmitterService";
 
 @NgModule({
   declarations: [
@@ -25,6 +25,6 @@ import {ClassesService} from '../shared/services/classesService';
     MemberManagerModule,
     SessionPlannerModule,
   ],
-  providers: [ClassesService],
+  providers: [ClassesService, TransmitterService],
 })
 export class ManagerInterfaceModule { }

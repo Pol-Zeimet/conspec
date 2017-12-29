@@ -12,11 +12,11 @@ export class Member {
     gotBonus: boolean;
 
     constructor(){
-        this.name = undefined;
-        this.lastName = undefined;
+        this.name = '';
+        this.lastName = '';
         this._id = undefined; //will be assigned by db
-        this.tel = undefined;
-        this.email = undefined;
+        this.tel = '';
+        this.email = '';
         this.verified = false;
         this.gotBonus = false;
 

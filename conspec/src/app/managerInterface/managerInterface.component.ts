@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
     selector: 'manager-interface',
     templateUrl: './managerInterface.template.html',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ManagerInterfaceComponent implements OnInit{
-    
-    constructor() {}
+
+    constructor() {
+    }
 
     ngOnInit(){
     }
