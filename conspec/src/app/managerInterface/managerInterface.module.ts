@@ -13,6 +13,7 @@ import { SessionPlannerModule } from './sessionPlanner/sessionPlanner.module';
 import {ClassesService} from '../shared/services/classesService';
 import { TransmitterService } from "../shared/services/transmitterService";
 
+
 @NgModule({
   declarations: [
     ManagerInterfaceComponent,

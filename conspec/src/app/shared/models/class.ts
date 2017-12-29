@@ -10,6 +10,7 @@ export class Class{
     members: Member[];
     sessions: Session[];
     shedule: String;
+    places: number;
 
     constructor(){
         this._id = undefined; //will be assigned by db
@@ -17,5 +18,6 @@ export class Class{
         this.members = [];
         this.sessions = [];
         this.shedule = '';
+        this.places = 0;
     }
 }

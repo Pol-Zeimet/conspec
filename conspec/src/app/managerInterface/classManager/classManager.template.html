@@ -1,0 +1,21 @@
+ClassManager
+<div *ngIf = "selectedClass">
+    <ul>
+        <li>
+            {{selectedClass._id}}
+        </li>
+        <li>
+            {{selectedClass.name}}
+        </li>
+        <li>
+            {{selectedClass.shedule}}
+        </li>
+    </ul>
+    <ul>
+        Members
+        <li *ngFor = "let member of selectedClass.members">
+            {{member.name}}
+        </li>
+    </ul>
+    
+</div>

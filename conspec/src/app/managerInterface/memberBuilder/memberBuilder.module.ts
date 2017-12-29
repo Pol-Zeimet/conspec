@@ -1,16 +1,16 @@
 import {NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {MemberManagerComponent} from './memberManager.component';
-import { MemberManagerRoutingModule } from './memberManager-routing.module';
+import {MemberBuilderComponent} from './memberBuilder.component';
+import { MemberBuilderRoutingModule } from './memberBuilder-routing.module';
 
 
 
 @NgModule({
-    declarations: [MemberManagerComponent],
+    declarations: [MemberBuilderComponent],
     imports: [ 
         CommonModule, 
-        MemberManagerRoutingModule
+        MemberBuilderRoutingModule
     ],
     exports: [],
     providers: [],

@@ -6,13 +6,13 @@
         <li class="list-group-item">
             <i class = "fa fa-book"></i>
             Your Classes
-            <ul>
+            <ol>
                 <li *ngFor='let class of classes' (click)="selectClass(class)">
                     {{class.name}}
                 </li>
-            </ul>
+            </ol>
         </li>
-        <li class="list-group-item" (click) = "addClass()"> 
+        <li class="list-group-item" [routerLink] = "['/class/new']">> 
             <i class = "fa fa-plus-circle"></i>
             Add new Class
         </li>

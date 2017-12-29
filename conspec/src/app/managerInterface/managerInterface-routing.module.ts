@@ -7,9 +7,12 @@ const routes: Routes = [
     {path: '', 
     component: ManagerInterfaceComponent,
     children: [
-        { path: '',         redirectTo: 'members', pathMatch: 'full' },
-        { path: 'members',  loadChildren:  './memberManager/memberManager.module#MemberManagerModule' },
-        { path: 'sessions', loadChildren: './sessionPlanner/sessionPlanner.module#SessionPlannerModule'}
+        { path: '',         redirectTo: 'class', pathMatch: 'full' },
+        { path: 'sessions', loadChildren: './sessionPlanner/sessionPlanner.module#SessionPlannerModule'},
+        { path: 'class',    loadChildren: './classManager/classManager.module#ClassManagerModule'},
+        { path: 'class/new', loadChildren: './classBuilder/classBuilder.module#ClassBuilderModule'},
+        { path: 'members',  loadChildren: './memberManager/memberManager.module#MemberManagerModule' },
+        { path: 'member/new', loadChildren: './memberBuilder/memberBuilder.module#MemberBuilderModule'}
     ]
     }
    

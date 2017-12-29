@@ -1,6 +1,4 @@
 import {Component} from '@angular/core'
-import { TransmitterService } from '../../shared/services/transmitterService';
-import { Class } from '../../shared/models';
 
 @Component({
     selector: 'member-manager',
@@ -8,12 +6,7 @@ import { Class } from '../../shared/models';
 })
 export class MemberManagerComponent{
 
-    selectedClass: Class
+    constructor(){
 
-    constructor(private transmitter: TransmitterService) {
-        this.transmitter.transmittedClass$.subscribe(
-            data => {
-                this.selectedClass = data
-                })
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit} from "@angular/core";
 import { ClassesService } from "../../../shared/services/classesService";
 import { Class, Member } from "../../../shared/models";
 import { TransmitterService } from "../../../shared/services/transmitterService";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'manager-sidebar',
@@ -11,29 +12,28 @@ import { TransmitterService } from "../../../shared/services/transmitterService"
 
 export class SidebarComponent implements OnInit {
     
-    int: number = 0;
     classes: Class[]
     activeClass:Class
-    
-    constructor(private classesService: ClassesService, private transmitter: TransmitterService) {
+
+    constructor(private classesService: ClassesService, private transmitter: TransmitterService, private router: Router) {
+        this.transmitter.transmittedClass$.subscribe(
+            data=> {
+                if (!this.classes.find(function(cls){
+                    return cls._id === data._id
+                })){
+                    this.classes.push(data)
+                    this.selectClass(data)
+                }
+                
+            }
+        )
     }
     
     ngOnInit(){
         this.classes = new Array<Class>();
         this.classes = this.loadAllClasses();
     }
-
-    addClass(){
-
-        var newClass= new Class();
-        newClass.name = 'Training' + this.int;
-        this.int++;
-        newClass = this.classesService.persistClass(newClass);
-        this.classes.push(newClass); 
-        console.log(this.classes)
-        
-    }
-
+    
     loadAllClasses(): Class[]{
         var allClasses = this.classesService.getAllClasses()
         if(allClasses){
@@ -42,10 +42,12 @@ export class SidebarComponent implements OnInit {
             return []
         }
     }
-
+    
     selectClass(selectedClass:Class){
+        this.router.navigate(['/class'])
         this.activeClass = selectedClass
-        this.transmitter.transmitClass(this.activeClass)
+        this.transmitter.transmitClass(selectedClass)
+        this.router.navigate(['/class'])
     }
 
 }
