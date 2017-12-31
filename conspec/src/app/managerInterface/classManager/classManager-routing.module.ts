@@ -4,7 +4,7 @@ import { ClassManagerComponent } from './classManager.component';
 
 
 const routes: Routes = [
-    {path: '',  component: ClassManagerComponent,}
+    {path: '',  component: ClassManagerComponent },
     ]
 
 @NgModule({

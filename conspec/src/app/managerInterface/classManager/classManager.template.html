@@ -1,5 +1,5 @@
 ClassManager
-<div *ngIf = "selectedClass">
+<div *ngIf = "selectedClass._id">
     <ul>
         <li>
             {{selectedClass._id}}
@@ -11,11 +11,19 @@ ClassManager
             {{selectedClass.shedule}}
         </li>
     </ul>
-    <ul>
-        Members
-        <li *ngFor = "let member of selectedClass.members">
-            {{member.name}}
-        </li>
-    </ul>
     
 </div>
+<ngb-tabset>
+    <ngb-tab>
+        <ng-template ngbTabTitle>Members</ng-template>
+        <ng-template ngbTabContent>
+            <member-manager></member-manager>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>Sessions</ng-template>
+        <ng-template ngbTabContent>
+        <session-planner></session-planner>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

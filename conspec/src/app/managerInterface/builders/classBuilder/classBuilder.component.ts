@@ -1,8 +1,8 @@
 import { Component, OnInit, Input} from "@angular/core";
-import { Router } from "@angular/router";
-import { TransmitterService } from "../../shared/services/transmitterService";
-import { ClassesService } from "../../shared/services/classesService";
-import { Class } from "../../shared/models";
+import { TransmitterService } from "../../../shared/services/transmitterService";
+import { ClassesService } from "../../../shared/services/classesService";
+import { Class } from "../../../shared/models";
+import { Location } from "@angular/common";
 
 
 
@@ -16,7 +16,7 @@ export class ClassBuilderComponent implements OnInit {
     @Input()
     newClass: Class
 
-    constructor(private transmittter: TransmitterService, private classesService: ClassesService, private router: Router){
+    constructor(private transmittter: TransmitterService, private classesService: ClassesService,  private location: Location){
         
     }
 

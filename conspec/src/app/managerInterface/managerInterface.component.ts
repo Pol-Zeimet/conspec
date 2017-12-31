@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TransmitterService } from '../shared/services/transmitterService';
+import { Class } from '../shared/models/index';
 
 
 @Component({
@@ -9,10 +11,16 @@ import { Component, OnInit } from '@angular/core';
 
 export class ManagerInterfaceComponent implements OnInit{
 
-    constructor() {
-    }
+    selectedClass: Class
 
+    constructor(private transmitter: TransmitterService) {
+    }
+    
     ngOnInit(){
+        this.transmitter.transmittedClass$.subscribe(
+            data => {
+                this.selectedClass = data
+                })
     }
 
 }

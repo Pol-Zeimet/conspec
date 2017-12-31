@@ -14,24 +14,25 @@ export class SidebarComponent implements OnInit {
     
     classes: Class[]
     activeClass:Class
-
+    
     constructor(private classesService: ClassesService, private transmitter: TransmitterService, private router: Router) {
+    }
+    
+    ngOnInit(){
+        this.classes = this.loadAllClasses();
         this.transmitter.transmittedClass$.subscribe(
             data=> {
-                if (!this.classes.find(function(cls){
-                    return cls._id === data._id
-                })){
-                    this.classes.push(data)
-                    this.selectClass(data)
+                if (data._id != undefined){
+                    if(this.classes.find(function(cls){ return cls._id === data._id })){
+                        this.classes = this.loadAllClasses()
+                    } else {
+                        this.classes.push(data)
+                        this.selectClass(data)
+                    }
                 }
                 
             }
         )
-    }
-    
-    ngOnInit(){
-        this.classes = new Array<Class>();
-        this.classes = this.loadAllClasses();
     }
     
     loadAllClasses(): Class[]{
@@ -44,10 +45,9 @@ export class SidebarComponent implements OnInit {
     }
     
     selectClass(selectedClass:Class){
-        this.router.navigate(['/class'])
         this.activeClass = selectedClass
         this.transmitter.transmitClass(selectedClass)
-        this.router.navigate(['/class'])
+        this.router.navigateByUrl('/class')
     }
 
 }

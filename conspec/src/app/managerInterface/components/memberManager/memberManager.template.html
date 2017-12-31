@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope = "col">Name</th>
+            <th scope = "col">Last Name</th>
+            <th scope = "col">Email</th>
+            <th scope = "col">Phone Number</th>
+            <th scope = "col">Verified</th>
+            <th scope = "col">Bonus</th>
+        </tr>
+    </thead>
+    <tbody *ngIf = "selectedClass" class ="table">
+        <tr *ngFor = "let member of selectedClass.members" (click) = 'select(member)'>
+            <td>{{member.name}}</td>
+            <td>{{member.lastName}}</td>
+            <td>{{member.email}}</td>
+            <td>{{member.tel}}</td>
+            <td>{{member.verified}}</td>
+            <td>{{member.gotBonus}}</td>
+            
+        </tr>
+        <tr *ngFor = "let place of placesLeft">
+            <td>Free place</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()">Edit Selected Member</button>
+<button *ngIf = "(selectedClass._id) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()">Add new Member</button>

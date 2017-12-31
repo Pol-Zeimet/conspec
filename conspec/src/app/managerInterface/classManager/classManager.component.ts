@@ -13,10 +13,6 @@ export class ClassManagerComponent implements OnInit{
     selectedClass: Class
 
     constructor(private transmitter: TransmitterService) {
-        this.transmitter.transmittedClass$.subscribe(
-            data => {
-                this.selectedClass = data
-                })
     }
     
     ngOnInit(){
