@@ -1,0 +1,35 @@
+<h1>Creating a Session</h1>
+
+<div class="card">
+    <div class="card-block">
+      <h4 class="card-title">New Session</h4>
+        <div class="form-group">
+            <label for="name">Date</label>
+            <input class="form-control" [matDatepicker]="datepicker" [(ngModel)] = "session.date" name="date">
+            <mat-datepicker #datepicker></mat-datepicker>
+        </div>
+        <div class="form-group">
+            <p>Participants</p>
+            <tr *ngFor = "let memberSessionRelation of session.presences">
+                <td>{{memberSessionRelation.member.name}} {{memberSessionRelation.member.lastName}}</td>
+                <td>
+                    <form>
+                        <label for="present">Present</label>
+                        <input type="radio" id="present" name="state" value="present"  (click)="setState(memberSessionRelation, 'present')">
+                        
+                        <label for="excused">Excused</label>
+                        <input type="radio" id="excused" name="state" value="excused"  (click)="setState(memberSessionRelation, 'excused')">
+                        
+                        <label for="missing">Missing</label>
+                        <input type="radio" id="missing" name="state" value="missing"  checked (click)="setState(memberSessionRelation, 'missing')">
+                    </form>
+                </td>
+            </tr>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Topic</label>
+            <input class="form-control" id="topic" placeholder="Session Topic" [(ngModel)] = "session.topic" name="topic">
+        </div>
+      <button class="btn btn-primary" (click) = "saveSession()">Save</button>    
+    </div>
+  </div>

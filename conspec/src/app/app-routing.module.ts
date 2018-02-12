@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
     { path: '', loadChildren: './managerInterface/managerInterface.module#ManagerInterfaceModule' },
-   
+
 ];
 
 @NgModule({

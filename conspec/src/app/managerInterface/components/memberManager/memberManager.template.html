@@ -30,4 +30,4 @@
     </tbody>
 </table>
 <button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()">Edit Selected Member</button>
-<button *ngIf = "(selectedClass._id) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()">Add new Member</button>
+<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()">Add new Member</button>

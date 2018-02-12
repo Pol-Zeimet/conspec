@@ -8,11 +8,11 @@ import { ClassesService } from '../../../shared/services/classesService';
 
 
 @Component({
-    selector: 'app-member-builder',
-    templateUrl: './memberBuilder.template.html'
+    selector: 'app-member-editor',
+    templateUrl: './memberEditor.template.html'
 })
 
-export class MemberBuilderComponent implements OnInit {
+export class MemberEditorComponent implements OnInit {
 
     @Input() member: Member;
     private selectedClass: Class;
@@ -34,8 +34,7 @@ export class MemberBuilderComponent implements OnInit {
     }
 
     saveMember() {
-        this.member = this.memberservice.persistMember(this.member);
-        this.selectedClass.members.push(this.member);
+        this.memberservice.updateMember(this.member);
         if (this.classesService.updateClass(this.selectedClass)) {
             this.transmitter.transmitModifiedClass(this.selectedClass);
         }

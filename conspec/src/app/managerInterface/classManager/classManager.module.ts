@@ -12,8 +12,8 @@ import { MemberManagerComponent } from '../components/memberManager/memberManage
 
 @NgModule({
     declarations: [ClassManagerComponent, SessionPlannerComponent, MemberManagerComponent],
-    imports: [ 
-        CommonModule, 
+    imports: [
+        CommonModule,
         ClassManagerRoutingModule,
         NgbModule
     ],

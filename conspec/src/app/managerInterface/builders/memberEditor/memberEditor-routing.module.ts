@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ClassManagerComponent } from './classManager.component';
+import { MemberEditorComponent } from './memberEditor.component';
 
 
 const routes: Routes = [
-    {path: '',  component: ClassManagerComponent }
-                        ];
+    {path: '',  component: MemberEditorComponent }
+    ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ClassManagerRoutingModule {}
+export class MemberEditorRoutingModule {}

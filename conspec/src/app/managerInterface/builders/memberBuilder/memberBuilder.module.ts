@@ -9,8 +9,8 @@ import { MemberBuilderRoutingModule } from './memberBuilder-routing.module';
 
 @NgModule({
     declarations: [MemberBuilderComponent],
-    imports: [ 
-        CommonModule, 
+    imports: [
+        CommonModule,
         MemberBuilderRoutingModule,
         FormsModule
     ],

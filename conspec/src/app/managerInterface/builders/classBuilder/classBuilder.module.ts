@@ -10,7 +10,7 @@ import { ClassBuilderRoutingModule } from './classBuilder-routing.module';
 
 @NgModule({
     declarations: [ClassBuilderComponent],
-    imports: [ 
+    imports: [
         CommonModule,
         FormsModule,
         ClassBuilderRoutingModule

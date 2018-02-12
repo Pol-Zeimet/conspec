@@ -1,6 +1,9 @@
 Sessions of this class
 <ul *ngIf = "selectedClass">
-        <li *ngFor = "let session of selectedClass.sessions">
-            {{session.topic}}
-        </li>
+    <li *ngFor = "let session of selectedClass.sessions">
+        {{session.topic}}
+    </li>
 </ul>
+
+<button *ngIf = "(selectedClass)" class= 'btn btn-primary' (click) = "addNewSession()">Add new Session</button>
+        

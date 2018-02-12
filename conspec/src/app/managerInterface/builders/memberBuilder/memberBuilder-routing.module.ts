@@ -4,8 +4,8 @@ import { MemberBuilderComponent } from './memberBuilder.component';
 
 
 const routes: Routes = [
-    {path: '',  component: MemberBuilderComponent,}
-    ]
+    {path: '',  component: MemberBuilderComponent }
+                        ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

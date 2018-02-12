@@ -1,17 +1,17 @@
 
-import { Member } from "./member";
-import {Injectable} from "@angular/core"
+import { MemberSessionRelation } from './member-session-relation';
+import {Injectable} from '@angular/core';
 
 @Injectable()
-export class Session{
-  
+export class Session {
+
     date: Date;
     topic: String;
-    participants: Member[];
+    presences: MemberSessionRelation[];
 
-    constructor(){
+    constructor() {
         this.date = new Date('00/00/2000');
-        this.participants = [];
+        this.presences = [];
         this.topic = '';
     }
 }

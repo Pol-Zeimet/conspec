@@ -1,13 +1,27 @@
-import {Component, Input} from '@angular/core'
+import {Component, Input, OnInit} from '@angular/core';
 import { Class } from '../../../shared/models/index';
+import { TransmitterService } from '../../../shared/services/transmitterService';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'session-planner',
+    selector: 'app-session-planner',
     templateUrl: './sessionPlanner.template.html'
 })
-export class SessionPlannerComponent{
+export class SessionPlannerComponent implements OnInit {
 
-    @Input() selectedClass:Class
+    @Input() selectedClass: Class;
 
-    constructor(){}
+    constructor(private transmitter: TransmitterService, private router: Router) {}
+
+    ngOnInit() {
+        this.transmitter.activeClass$.subscribe(
+            data => {
+                this.selectedClass = data;
+            }
+        );
+    }
+
+    addNewSession() {
+        this.router.navigateByUrl('/session/new');
+    }
 }

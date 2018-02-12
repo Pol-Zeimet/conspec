@@ -1,26 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { TransmitterService } from '../shared/services/transmitterService';
-import { Class } from '../shared/models/index';
-
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'manager-interface',
+    selector: 'app-manager-interface',
     templateUrl: './managerInterface.template.html',
     styleUrls: []
 })
 
-export class ManagerInterfaceComponent implements OnInit{
-
-    selectedClass: Class
-
-    constructor(private transmitter: TransmitterService) {
-    }
-    
-    ngOnInit(){
-        this.transmitter.transmittedClass$.subscribe(
-            data => {
-                this.selectedClass = data
-                })
-    }
-
-}
+export class ManagerInterfaceComponent {}
