@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Class, Member } from '../models';
+import { Class, Member, Session } from '../models';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
@@ -19,7 +19,8 @@ export class TransmitterService {
     private transmittedMember = new BehaviorSubject<Member>(new Member());
     transmittedMember$ = this.transmittedMember.asObservable();
 
-
+    private transmittedSession = new BehaviorSubject<Session>(new Session());
+    transmittedSession$ = this.transmittedSession.asObservable();
 
     transmitActiveClass(activeClass: Class) {
         this.activeClass.next(activeClass);
@@ -35,5 +36,9 @@ export class TransmitterService {
 
     transmitMember(transmittedMember: Member) {
         this.transmittedMember.next(transmittedMember);
+    }
+
+    transmitSession(transmittedSession: Session) {
+        this.transmittedSession.next(transmittedSession);
     }
 }

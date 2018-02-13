@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 
 
@@ -16,6 +20,8 @@ import { SessionBuilderRoutingModule } from './sessionBuilder-routing.module';
     imports: [
         MatDatepickerModule,
         MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
         CommonModule,
         FormsModule,
         SessionBuilderRoutingModule

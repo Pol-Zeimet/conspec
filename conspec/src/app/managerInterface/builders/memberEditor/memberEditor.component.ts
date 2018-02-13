@@ -5,6 +5,7 @@ import { MemberService } from '../../../shared/services/memberService';
 import {Location} from '@angular/common';
 import { TransmitterService } from '../../../shared/services/transmitterService';
 import { ClassesService } from '../../../shared/services/classesService';
+import { error } from 'util';
 
 
 @Component({

@@ -12,7 +12,8 @@ const routes: Routes = [
         { path: 'class/new', loadChildren: './builders/classBuilder/classBuilder.module#ClassBuilderModule'},
         { path: 'member/new', loadChildren: './builders/memberBuilder/memberBuilder.module#MemberBuilderModule'},
         { path: 'member/edit', loadChildren: './builders/memberEditor/memberEditor.module#MemberEditorModule'},
-        { path: 'session/new', loadChildren: './builders/sessionBuilder/sessionBuilder.module#SessionBuilderModule'}
+        { path: 'session/new', loadChildren: './builders/sessionBuilder/sessionBuilder.module#SessionBuilderModule'},
+        { path: 'session/edit', loadChildren: './builders/sessionEditor/sessionEditor.module#SessionEditorModule'}
     ]
     }
 

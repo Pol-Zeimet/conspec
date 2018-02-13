@@ -5,6 +5,8 @@ import { MemberService } from '../../../shared/services/memberService';
 import {Location} from '@angular/common';
 import { TransmitterService } from '../../../shared/services/transmitterService';
 import { ClassesService } from '../../../shared/services/classesService';
+import { error } from 'util';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,15 +23,15 @@ export class MemberBuilderComponent implements OnInit {
         private memberservice: MemberService,
         private classesService: ClassesService,
         private location: Location,
+        private router: Router,
         private transmitter: TransmitterService
-                ) {}
+                ) {
+        this.member = new Member();
+                }
 
     ngOnInit() {
         this.transmitter.activeClass$.subscribe(
             data => this.selectedClass = data
-        );
-        this.transmitter.transmittedMember$.subscribe(
-            data => this.member = data
         );
     }
 
@@ -39,6 +41,6 @@ export class MemberBuilderComponent implements OnInit {
         if (this.classesService.updateClass(this.selectedClass)) {
             this.transmitter.transmitModifiedClass(this.selectedClass);
         }
-        this.location.back();
+        this.router.navigateByUrl('/class');
     }
 }

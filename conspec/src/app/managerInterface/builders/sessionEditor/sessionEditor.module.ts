@@ -23,5 +23,5 @@ import { SessionEditorRoutingModule } from './sessionEditor-routing.module';
     exports: [],
     providers: [],
 })
-export class SessionBuilderModule {
+export class SessionEditorModule {
 }

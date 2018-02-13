@@ -35,7 +35,6 @@ export class MemberManagerComponent implements OnInit {
     }
 
     createNewMember() {
-        this.transmitter.transmitMember(new Member());
         this.router.navigateByUrl('/member/new');
     }
 }
