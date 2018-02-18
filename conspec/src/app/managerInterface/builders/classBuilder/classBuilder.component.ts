@@ -26,7 +26,7 @@ export class ClassBuilderComponent implements OnInit {
 
 
     createNewClass() {
-        if ((this.newClass.name !== '') &&  (this.newClass.shedule !== '')) {
+        if ((this.newClass.name !== '') &&  (this.newClass.shedule !== '')  &&  (this.newClass.places > 0 ) ) {
             const persistedClass = this.classesService.persistClass(this.newClass);
             if (persistedClass) {
                 this.transmittter.transmitAddedClass(persistedClass);

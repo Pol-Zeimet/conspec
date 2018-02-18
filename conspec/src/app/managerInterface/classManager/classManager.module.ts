@@ -15,10 +15,10 @@ import { MemberManagerComponent } from '../components/memberManager/memberManage
     imports: [
         CommonModule,
         ClassManagerRoutingModule,
-        NgbModule
+        NgbModule,
     ],
     exports: [],
-    providers: [],
+    providers:  [],
 })
 export class ClassManagerModule {
 }

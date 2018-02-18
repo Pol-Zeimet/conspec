@@ -4,7 +4,7 @@ Sessions of this class
     <thead>
         <tr>
             <th scope = "col">Name</th>
-            <th *ngFor = "let session of selectedClass.sessions" scope = "col" (click) = 'selectSession(session)'>{{session.date}}</th>
+            <th *ngFor = "let session of selectedClass.sessions" scope = "col" (click) = 'selectSession(session)'>{{session.date.toString()}}</th>
         </tr>
     </thead>
     <tbody *ngIf = "selectedClass" class ="table">

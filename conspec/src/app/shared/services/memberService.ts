@@ -17,16 +17,23 @@ export class MemberService {
 
 
 
-    persistMember(member: Member): Member {
-        this.membersDb.insert(member, function(err, newDoc){
-            if (newDoc) {
-                member._id = newDoc._id;
-            } else {
-                console.log(err);
-            }
+    persistMember(member: Member): Promise<Member> {
+        const promise = new Promise<Member>((resolve, reject) => {
+            this.membersDb.insert(member, function(err, newDoc){
+                if (newDoc) {
+                    member._id = newDoc._id;
+                    console.log('assigned _id ' + member._id + ' to ' + member.name);
+                    resolve(member);
+                } else {
+                    console.log(err);
+                    member = undefined;
+                    reject(member);
+                }
+            });
         });
-        return member;
+        return promise;
     }
+
     updateMember(member: Member): Boolean {
         let succ: boolean;
         this.membersDb.update({_id: member._id}, member, {}, function(err, newDoc){

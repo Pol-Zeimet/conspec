@@ -1,12 +1,17 @@
-<h1>Creating a Session</h1>
+<h1>Editing a Session</h1>
 
 <div class="card">
     <div class="card-block">
       <h4 class="card-title">New Session</h4>
         <div class="form-group">
-            <label for="name">Date</label>
-            <input class="form-control" [matDatepicker]="datepicker" [(ngModel)] = "session.date" name="date">
-            <mat-datepicker #datepicker></mat-datepicker>
+            <form class ='form form-inline'>
+                <label for='day'>Day</label>
+                <input id='day' type = 'number' min = '1' max = '31'name = 'day' [(ngModel)] = 'day' >
+                <label for='month'>Month</label>
+                <input id='month' type = 'number' min = '1' max ='12' name = 'month' [(ngModel)] = 'month' >
+                <label for='year'>Year</label>
+                <input id='year' type = 'number' min ='2000' name = 'year' [(ngModel)] = 'year' >
+            </form>
         </div>
         <div class="form-group">
             <p>Participants</p>
@@ -15,19 +20,19 @@
                 <td>
                     <form>
                         <label for="present">Present</label>
-                        <input type="radio" id="present" name="state" value="present"  (click)="setState(memberSessionRelation, 'present')">
+                        <input type="radio" id="present" name="state" value="present" [checked]="memberSessionRelation.state === 'present'" (click)="setState(memberSessionRelation, 'present')">
                         
                         <label for="excused">Excused</label>
-                        <input type="radio" id="excused" name="state" value="excused"  (click)="setState(memberSessionRelation, 'excused')">
+                        <input type="radio" id="excused" name="state" value="excused" [checked]="memberSessionRelation.state === 'excused'" (click)="setState(memberSessionRelation, 'excused')">
                         
                         <label for="missing">Missing</label>
-                        <input type="radio" id="missing" name="state" value="missing"  checked (click)="setState(memberSessionRelation, 'missing')">
+                        <input type="radio" id="missing" name="state" value="missing" [checked]="memberSessionRelation.state === 'missing'" (click)="setState(memberSessionRelation, 'missing')">
                     </form>
                 </td>
             </tr>
         </div>
         <div class="form-group">
-            <label for="lastName">Topic</label>
+            <label for="topic">Topic</label>
             <input class="form-control" id="topic" placeholder="Session Topic" [(ngModel)] = "session.topic" name="topic">
         </div>
       <button class="btn btn-primary" (click) = "saveSession()">Save</button>    

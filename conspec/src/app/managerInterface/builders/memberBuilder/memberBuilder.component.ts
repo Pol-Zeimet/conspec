@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Member, Class } from '../../../shared/models';
+import { Member, Class, MemberSessionRelation } from '../../../shared/models';
 import { MemberManagerComponent } from '../../components/memberManager/memberManager.component';
 import { MemberService } from '../../../shared/services/memberService';
 import {Location} from '@angular/common';
@@ -26,7 +26,7 @@ export class MemberBuilderComponent implements OnInit {
         private router: Router,
         private transmitter: TransmitterService
                 ) {
-        this.member = new Member();
+                    this.member = new Member();
                 }
 
     ngOnInit() {
@@ -36,11 +36,17 @@ export class MemberBuilderComponent implements OnInit {
     }
 
     saveMember() {
-        this.member = this.memberservice.persistMember(this.member);
-        this.selectedClass.members.push(this.member);
-        if (this.classesService.updateClass(this.selectedClass)) {
-            this.transmitter.transmitModifiedClass(this.selectedClass);
-        }
-        this.router.navigateByUrl('/class');
+        this.memberservice.persistMember(this.member)
+        .then( (member) => this.member = member, (member) => this.member = member)
+        .then(() => {
+            if (this.member._id !== undefined) {
+                this.selectedClass.members.push(this.member);
+                this.selectedClass.sessions.forEach(session => session.presences.push(new MemberSessionRelation(this.member, 'no Data')));
+                if (this.classesService.updateClass(this.selectedClass)) {
+                    this.transmitter.transmitModifiedClass(this.selectedClass);
+                }
+                this.router.navigateByUrl('/class');
+            }
+        });
     }
 }

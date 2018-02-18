@@ -32,13 +32,10 @@ export class SidebarComponent implements OnInit {
             });
         this.transmitter.modifiedClass$.subscribe(
             data => {
-                if (data) {
                     this.loadAllClasses();
                     this.selectClass(this.classes.find(
-                    // tslint:disable-next-line:triple-equals
-                    element => element._id == data._id
+                    element => element._id.toString() === data._id.toString()
                     ));
-                }
             });
     }
 

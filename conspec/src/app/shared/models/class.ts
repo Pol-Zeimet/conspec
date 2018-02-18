@@ -18,6 +18,6 @@ export class Class {
         this.members = [];
         this.sessions = [];
         this.shedule = '';
-        this.places = 0;
+        this.places = 1;
     }
 }

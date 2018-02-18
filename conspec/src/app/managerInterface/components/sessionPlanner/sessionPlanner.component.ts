@@ -12,7 +12,8 @@ export class SessionPlannerComponent implements OnInit {
     @Input() selectedClass: Class;
     selectedSession: Session;
 
-    constructor(private transmitter: TransmitterService, private router: Router) {}
+    constructor(private transmitter: TransmitterService, private router: Router) {
+    }
 
     ngOnInit() {
         this.transmitter.activeClass$.subscribe(
@@ -20,19 +21,22 @@ export class SessionPlannerComponent implements OnInit {
                 this.selectedClass = data;
             }
         );
+
     }
 
     getRelation(member: Member, session: Session): String {
         let state: String;
         state = 'no Data';
-        session.presences.forEach(element => {
-
-            if ( element.member._id.toString() === member._id.toString()) {
-                state = element.state;
-            }
-        });
+        if ( member._id !== undefined ) {
+            session.presences.forEach(relation => {
+                if ( relation.member._id.toString() === member._id.toString()) {
+                    state = relation.state;
+                }
+            });
+        }
         return state;
     }
+
 
     selectSession(session: Session) {
         this.selectedSession = session;

@@ -5,16 +5,20 @@ import { SessionService } from '../../../shared/services/sessionService';
 import { ClassesService } from '../../../shared/services/classesService';
 import { error } from 'util';
 import { Location } from '@angular/common';
-
+import { CustDate } from '../../../shared/models/custDate';
 
 
 @Component({
     selector: 'app-session-builder',
-    templateUrl: './sessionBuilder.template.html'
+    templateUrl: './sessionBuilder.template.html',
+
 })
 
 export class SessionBuilderComponent implements OnInit {
     @Input() session: Session;
+    @Input() day: Number;
+    @Input() month: Number;
+    @Input() year: Number;
     private selectedClass: Class;
 
     constructor(private transmitter: TransmitterService,
@@ -29,7 +33,7 @@ export class SessionBuilderComponent implements OnInit {
             data => {
                 this.selectedClass = data;
                 this.selectedClass.members.forEach(member => {
-                this.session.presences.push(new MemberSessionRelation(member, 'missing'));
+                    this.session.presences.push(new MemberSessionRelation(member, 'missing'));
                 });
             }
         );
@@ -39,16 +43,22 @@ export class SessionBuilderComponent implements OnInit {
         relation.state = state;
     }
 
+
     saveSession() {
-        this.session = this.sessionService.persistSession(this.session);
-        this.selectedClass.sessions.push(this.session);
-        this.selectedClass.sessions.sort(
-            (session1, session2) => {
-                 return session1.date.valueOf() - session2.date.valueOf();
-            });
-        if (this.classesService.updateClass(this.selectedClass)) {
-            this.transmitter.transmitModifiedClass(this.selectedClass);
+        try {
+            this.session.date.setDate(this.day, this.month, this.year);
+            this.session = this.sessionService.persistSession(this.session);
+            this.selectedClass.sessions.push(this.session);
+            this.selectedClass.sessions.sort(
+                (session1, session2) => {
+                    return session1.date.valueOf() - session2.date.valueOf();
+                });
+            if (this.classesService.updateClass(this.selectedClass)) {
+                this.transmitter.transmitModifiedClass(this.selectedClass);
+            }
+            this.location.back();
+        } catch (error) {
+            console.log(error);
         }
-        this.location.back();
     }
 }
