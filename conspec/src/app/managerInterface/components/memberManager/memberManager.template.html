@@ -29,5 +29,21 @@
         </tr>
     </tbody>
 </table>
+
+<ng-template #removeModal let-c="close">
+    <div class="modal-header">
+      <h4 class="modal-title">Removing Member</h4>
+
+    </div>
+    <div class="modal-body">
+        <p>This will remove the selected Member from the class, but not delete it entirely.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="removeMember(); c()">Confirm</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c()">Cancel</button>
+    </div>
+  </ng-template>
+  
 <button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()">Edit Selected Member</button>
+<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "openModal(removeModal)">Remove Member from Class</button>
 <button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()">Add new Member</button>

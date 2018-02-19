@@ -41,6 +41,20 @@ export class SessionService {
         return succ;
     }
 
+    deleteSession(session: Session): Boolean {
+        let succ: boolean;
+        this.sessionsDb.remove({_id: session._id}, function(err, numRemoved){
+            if (numRemoved === 1) {
+                succ = true;
+                console.log('session with session._id: ' + session._id + ' has been removed');
+            } else {
+                succ = false;
+                console.log(err);
+            }
+        });
+        return succ;
+    }
+
     getAllSessions(): Session[] {
         const sessions = new Array<Session>();
         this.sessionsDb.find({}, function (err, newDoc) {
