@@ -1,13 +1,13 @@
 Sessions of this class
    
-<table class="table">
+<table *ngIf = 'selectedClass' class="table">
     <thead>
         <tr>
             <th scope = "col">Name</th>
-            <th *ngFor = "let session of selectedClass.sessions" scope = "col" (click) = 'selectSession(session)'>{{session.date.toString()}}</th>
+            <th *ngFor = "let session of selectedClass.sessions" scope = "col" (click) = 'selectSession(session)'>{{getDate(session)}}</th>
         </tr>
     </thead>
-    <tbody *ngIf = "selectedClass" class ="table">
+    <tbody class ="table">
         <tr *ngFor = "let member of selectedClass.members">
             <td>
                 {{member.name}}<br>

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CustDate {
-    private day: Number;
-    private month: Number;
-    private year: Number;
+    day: Number;
+    month: Number;
+    year: Number;
 
     constructor() {
         this.day = 1;
@@ -23,6 +23,7 @@ export class CustDate {
             return false;
         }
     }
+
     isValidDate(day: Number, month: Number, year: Number ): boolean {
         switch (month) {
             case 1:
@@ -85,32 +86,8 @@ export class CustDate {
         return this.day.valueOf()  + this.month.valueOf() + this.year.valueOf() ;
     }
 
-    toString(): String {
-        return this.day + '.' + this.month + '.' + this.year;
-    }
-
-    getDay(): Number {
-        return this.day;
-    }
-
-    getMonth(): Number {
-        return this.month;
-    }
-
-    getYear(): Number {
-        return this.year;
-    }
-
-    setDay(day: Number) {
-        this.day = day;
-    }
-
-    setMonth(month: Number) {
-        this.month = month;
-    }
-
-    setYear(year: Number) {
-        this.year = year;
+    toString(): string {
+        return this.day.toString() + '.' + this.month.toString() + '.' + this.year.toString();
     }
 }
 

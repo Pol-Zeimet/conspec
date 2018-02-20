@@ -1,5 +1,5 @@
 <h1>ClassManager</h1>
-<div *ngIf = "selectedClass != undefined">
+<div *ngIf = "selectedClass._id != undefined">
     <div>
         <ul>
             <li>
@@ -25,7 +25,7 @@
         </ngb-tab>
     </ngb-tabset>
 </div>
-<div *ngIf ="selectedClass === undefined">
+<div *ngIf ="selectedClass._id === undefined">
     <h3>
         Please create or select a class.
     </h3>

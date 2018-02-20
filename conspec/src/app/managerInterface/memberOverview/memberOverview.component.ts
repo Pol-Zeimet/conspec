@@ -65,7 +65,7 @@ export class MemberOverviewComponent implements OnInit {
                                                         return relation.member._id.toString() === this.selectedMember._id.toString();
                                                     });
                                                 if (sessionIndex >= 0) {
-                                                    session.presences.splice(sessionIndex, 1);
+                                                    session.presences = session.presences.splice(sessionIndex, 1);
                                                 }
                                             });
                                         this.classesService.updateClass(cl);

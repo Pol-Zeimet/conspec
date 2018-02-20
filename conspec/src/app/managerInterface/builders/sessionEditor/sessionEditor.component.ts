@@ -4,8 +4,8 @@ import { TransmitterService } from '../../../shared/services/transmitterService'
 import { SessionService } from '../../../shared/services/sessionService';
 import { ClassesService } from '../../../shared/services/classesService';
 import { error } from 'util';
-import { Location } from '@angular/common';
 import { CustDate } from '../../../shared/models/custDate';
+import { Router } from '@angular/router';
 
 
 
@@ -25,23 +25,23 @@ export class SessionEditorComponent implements OnInit {
     constructor(private transmitter: TransmitterService,
                 private sessionService: SessionService,
                 private classesService: ClassesService,
-                private location: Location) {
+                private router: Router) {
                 }
 
     ngOnInit() {
         this.transmitter.transmittedSession$.subscribe(
             sessionData => {
-                this.session = sessionData as Session;
+                this.session = sessionData;
+                this.day = this.session.date.day;
+                this.month = this.session.date.month;
+                this.year = this.session.date.year;
             }
         );
         this.transmitter.activeClass$.subscribe(
             classData => {
-                this.selectedClass = classData as Class;
+                this.selectedClass = classData;
             }
         );
-        this.day = this.session.date.getDay();
-        this.month = this.session.date.getMonth();
-        this.year = this.session.date.getYear();
     }
 
     setState(relation: MemberSessionRelation, state: String) {
@@ -51,9 +51,9 @@ export class SessionEditorComponent implements OnInit {
 
     saveSession() {
         try {
-            if (this.session.date.setDate(this.day, this.month, this.year)) {
-                this.session.date.setDate(this.day, this.month, this.year);
-                this.sessionService.updateSession(this.session);
+
+            const date = new CustDate();
+            if (date.setDate(this.session.date.day, this.session.date.month, this.session.date.year)) {
                 this.selectedClass.sessions.sort(
                     (session1, session2) => {
                         return session1.date.valueOf() - session2.date.valueOf();
@@ -61,7 +61,7 @@ export class SessionEditorComponent implements OnInit {
                 if (this.classesService.updateClass(this.selectedClass)) {
                     this.transmitter.transmitModifiedClass(this.selectedClass);
                 }
-                this.location.back();
+                this.router.navigateByUrl('/class');
             }
         } catch (error) {
             console.log(error);
