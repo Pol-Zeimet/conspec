@@ -51,16 +51,18 @@ export class SessionEditorComponent implements OnInit {
 
     saveSession() {
         try {
-            this.session.date.setDate(this.day, this.month, this.year);
-            this.sessionService.updateSession(this.session);
-            this.selectedClass.sessions.sort(
-                (session1, session2) => {
-                     return session1.date.valueOf() - session2.date.valueOf();
-                });
-            if (this.classesService.updateClass(this.selectedClass)) {
-                this.transmitter.transmitModifiedClass(this.selectedClass);
+            if (this.session.date.setDate(this.day, this.month, this.year)) {
+                this.session.date.setDate(this.day, this.month, this.year);
+                this.sessionService.updateSession(this.session);
+                this.selectedClass.sessions.sort(
+                    (session1, session2) => {
+                        return session1.date.valueOf() - session2.date.valueOf();
+                    });
+                if (this.classesService.updateClass(this.selectedClass)) {
+                    this.transmitter.transmitModifiedClass(this.selectedClass);
+                }
+                this.location.back();
             }
-            this.location.back();
         } catch (error) {
             console.log(error);
         }

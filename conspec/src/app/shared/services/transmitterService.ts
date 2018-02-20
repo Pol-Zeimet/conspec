@@ -22,6 +22,13 @@ export class TransmitterService {
     private transmittedSession = new BehaviorSubject<Session>(new Session());
     transmittedSession$ = this.transmittedSession.asObservable();
 
+    private poke = new BehaviorSubject<Number>(Number());
+    poke$ = this.poke.asObservable();
+
+    pokeListeners() {
+        this.poke.next(0);
+    }
+
     transmitActiveClass(activeClass: Class) {
         this.activeClass.next(activeClass);
     }

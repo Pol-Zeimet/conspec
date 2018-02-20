@@ -2,6 +2,7 @@
 import { MemberSessionRelation } from './member-session-relation';
 import {Injectable} from '@angular/core';
 import { CustDate } from './custDate';
+import { Member } from '.';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class Session {
 
     constructor() {
         this._id = undefined;
-        this.date = new CustDate(1, 1, 2000);
+        this.date = new CustDate();
         this.presences = [];
         this.topic = '';
     }

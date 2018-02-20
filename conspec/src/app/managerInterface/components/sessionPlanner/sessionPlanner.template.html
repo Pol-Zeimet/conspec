@@ -20,21 +20,23 @@ Sessions of this class
     </tbody>
 </table>
 
-
-<ng-template #removeModal let-c="close">
-        <div class="modal-header">
-          <h4 class="modal-title">Deleting Session</h4>
+<div id="remove" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h4 class="modal-title">Deleting Session</h4>
+                    <span class="close" (click) = 'closeModal("remove")'>&times;</span>
+            </div>
+            <div class="modal-body">
+                    <p>This will delete the selected Session. Do you really want to delete this session?</p>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" [disabled] = 'selectedSession === undefined' (click)='deleteSession(); closeModal("remove")'>Confirm</button>
+                <button type="button" class="btn btn-outline-dark" (click)='closeModal("remove")'>Cancel</button>
+            </div>
         </div>
-        <div class="modal-body">
-            <p>This will delete the selected Session. Do you really want to delete this session?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="deleteSession(); c()">Confirm</button>
-          <button type="button" class="btn btn-outline-dark" (click)="c()">Cancel</button>
-        </div>
-</ng-template>
+    </div>
       
-<button *ngIf = 'selectedSession' class="btn btn-secondary" (click) = "openModal(removeModal)">Delete Session</button>
+<button *ngIf = 'selectedSession' class="btn btn-secondary" (click) = "openModal('remove')">Delete Session</button>
 <button class= 'btn btn-primary' (click) = "addNewSession()">Add new Session</button>
 <button *ngIf='selectedSession' class= 'btn btn-primary' (click) = "editSession()">Edit Session</button>
 
