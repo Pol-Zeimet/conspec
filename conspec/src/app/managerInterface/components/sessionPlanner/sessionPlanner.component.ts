@@ -2,9 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import { Class, Session, Member } from '../../../shared/models/index';
 import { TransmitterService } from '../../../shared/services/transmitterService';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClassesService } from '../../../shared/services/classesService';
 import { SessionService } from '../../../shared/services/sessionService';
+import { CustDate } from '../../../shared/models/custDate';
 
 @Component({
     selector: 'app-session-planner',
@@ -12,24 +12,30 @@ import { SessionService } from '../../../shared/services/sessionService';
 })
 export class SessionPlannerComponent implements OnInit {
 
-    @Input() selectedClass: Class;
+    selectedClass: Class;
     selectedSession: Session;
 
     constructor(
         private transmitter: TransmitterService,
         private router: Router,
-        private modalService: NgbModal,
-        private classesService: ClassesService,
-        private sessionService: SessionService) {
+        private classesService: ClassesService) {
+    }
+
+    getDate(session: Session): string {
+        const date = new CustDate();
+        date.setDate(session.date.day, session.date.month, session.date.year);
+        return date.toString();
     }
 
     ngOnInit() {
-        this.transmitter.activeClass$.subscribe(
-            data => {
-                this.selectedClass = data;
-            }
-        );
-
+            this.transmitter.activeClass$.subscribe(
+                data => {
+                    if (data) {
+                        console.log(data);
+                        this.selectedClass = data;
+                    }
+                }
+            );
     }
 
     getRelation(member: Member, session: Session): String {
@@ -47,7 +53,7 @@ export class SessionPlannerComponent implements OnInit {
 
 
     selectSession(session: Session) {
-        this.selectedSession = session;
+        this.selectedSession = session as Session;
     }
 
     deleteSession() {
@@ -55,9 +61,6 @@ export class SessionPlannerComponent implements OnInit {
         this.selectedClass.sessions.splice(index, 1);
         if (this.classesService.updateClass(this.selectedClass)) {
             this.transmitter.transmitModifiedClass(this.selectedClass);
-        }
-        if (this.sessionService.deleteSession(this.selectedSession)) {
-            this.selectedSession = undefined;
         }
     }
 
