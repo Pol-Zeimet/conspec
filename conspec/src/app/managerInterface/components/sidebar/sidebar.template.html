@@ -3,24 +3,24 @@
         <div class="sidebar-header">
             <h3>Classes Overview</h3>
         </div>
-        <li class="list-group-item">
-            <i class = "fa fa-book"></i>
-            Your Classes
-            <ol>
-                <li *ngFor='let class of classes' (click)="selectClass(class)">
-                    {{class.name}}
-                </li>
-            </ol>
+        <li class="list-group-item" (click) = 'toggleClasses()'>
+            <i class="fa fa-book"></i>
+            Classes
+            <i class="fa fa-caret-right" id='closed'></i>
+            <i class="fa fa-caret-down" id ='open'></i>
         </li>
-        <li class="list-group-item" [routerLink] = "['/class/new']">
-            <i class = "fa fa-plus-circle"></i>
+        <ul class="list-group" id = "class-list">
+            <li *ngFor='let class of classes' class ='list-group-item' (click)="selectClass(class)">
+                {{class.name}}
+            </li>
+        </ul>
+        <li class="list-group-item" [routerLink]="['/class/new']">
+            <i class="fa fa-plus-circle"></i>
             Add new Class
         </li>
-        <li class="list-group-item" [routerLink] = "['/members']">
-            <i class = "fa fa-users "></i>
+        <li class="list-group-item" [routerLink]="['/members']">
+            <i class="fa fa-users "></i>
             Member OverView
         </li>
     </ul>
 </nav>
-
-    

@@ -1,13 +1,13 @@
 Sessions of this class
-   
-<table *ngIf = 'selectedClass' class="table">
+
+<table *ngIF = "selectedClass" class="table table-bordered">
     <thead>
         <tr>
             <th scope = "col">Name</th>
             <th *ngFor = "let session of selectedClass.sessions" scope = "col" (click) = 'selectSession(session)'>{{getDate(session)}}</th>
         </tr>
     </thead>
-    <tbody class ="table">
+    <tbody>
         <tr *ngFor = "let member of selectedClass.members">
             <td>
                 {{member.name}}<br>
@@ -35,11 +35,7 @@ Sessions of this class
             </div>
         </div>
     </div>
-      
+
 <button *ngIf = 'selectedSession' class="btn btn-secondary" (click) = "openModal('remove')">Delete Session</button>
 <button class= 'btn btn-primary' (click) = "addNewSession()">Add new Session</button>
 <button *ngIf='selectedSession' class= 'btn btn-primary' (click) = "editSession()">Edit Session</button>
-
-
-    
-        

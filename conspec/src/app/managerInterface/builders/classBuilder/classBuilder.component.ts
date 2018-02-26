@@ -2,7 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { TransmitterService } from '../../../shared/services/transmitterService';
 import { ClassesService } from '../../../shared/services/classesService';
 import { Class } from '../../../shared/models';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 
@@ -16,7 +16,10 @@ export class ClassBuilderComponent implements OnInit {
     @Input()
     newClass: Class;
 
-    constructor(private transmittter: TransmitterService, private classesService: ClassesService,  private location: Location) {
+    constructor(
+        private transmittter: TransmitterService,
+        private classesService: ClassesService,
+        private router: Router) {
 
     }
 
@@ -33,7 +36,7 @@ export class ClassBuilderComponent implements OnInit {
             } else {
                 console.log('something somewhere somehow went terribly wrong');
             }
-            this.location.back();
+            this.router.navigateByUrl('/class');
         }
     }
 }

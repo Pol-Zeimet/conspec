@@ -4,36 +4,52 @@
     <div class="card-block">
       <h4 class="card-title">New Session</h4>
         <div class="form-group">
+            <h5> Date </h5>
             <form class ='form form-inline'>
-                <label for='day'>Day</label>
-                <input id='day' type = 'number' min = '1' max = '31'name = 'day' [(ngModel)] = 'day' >
-                <label for='month'>Month</label>
-                <input id='month' type = 'number' min = '1' max ='12' name = 'month' [(ngModel)] = 'month' >
-                <label for='year'>Year</label>
-                <input id='year' type = 'number' min ='2000' name = 'year' [(ngModel)] = 'year' >
+                <label class = "datepicker-label" for='day'>*Day:</label>
+                <input id='day' class="form-control datepicker-short" type = 'number' min = '1' max = '31'name = 'day' [(ngModel)] = 'day' >
+                <label class = "datepicker-label" for='month'>*Month:</label>
+                <input id='month' class="form-control datepicker-short" type = 'number' min = '1' max ='12' name = 'month' [(ngModel)] = 'month' >
+                <label class = "datepicker-label" for='year'>*Year: </label>
+                <input id='year' class="form-control datepicker-long" type = 'number' min ='2000' name = 'year' [(ngModel)] = 'year' >
             </form>
         </div>
-        <div class="form-group">
-            <p>Participants</p>
-            <tr *ngFor = "let memberSessionRelation of session.presences">
-                <td>{{memberSessionRelation.member.name}} {{memberSessionRelation.member.lastName}}</td>
-                <td>
-                    <form>
-                        <label for="present">Present</label>
-                        <input type="radio" id="present" name="state" value="present" [checked]="memberSessionRelation.state === 'present'" (click)="setState(memberSessionRelation, 'present')">
-                        
-                        <label for="excused">Excused</label>
-                        <input type="radio" id="excused" name="state" value="excused" [checked]="memberSessionRelation.state === 'excused'" (click)="setState(memberSessionRelation, 'excused')">
-                        
-                        <label for="missing">Missing</label>
-                        <input type="radio" id="missing" name="state" value="missing" [checked]="memberSessionRelation.state === 'missing'" (click)="setState(memberSessionRelation, 'missing')">
-                    </form>
-                </td>
-            </tr>
+        <h5>Presences:</h5>
+        <table *ngIf='session.presences.length > 0' class="table table-bordered">
+            <thead>
+                    <th scope ="col">Name</th>
+                    <th scope ="col">Present</th>
+                    <th scope ="col">Excused</th>
+                    <th scope ="col">Missing</th>
+            </thead>
+            <tbody class ="table">
+                <tr *ngFor = "let memberSessionRelation of session.presences">
+                    <td>{{memberSessionRelation.member.name}} {{memberSessionRelation.member.lastName}}</td>
+                    <td>
+                        <form>
+                            <input type="radio" name="state" [checked]="memberSessionRelation.state === 'present'" (click)="setState(memberSessionRelation, 'present')">
+                        </form>  
+                    </td>
+                    <td>
+                        <form>
+                            <input type="radio" name="state" [checked]="memberSessionRelation.state === 'excused'" (click)="setState(memberSessionRelation, 'excused')">
+                        </form>  
+                    </td>
+                    <td>
+                        <form>
+                            <input type="radio" name="state" [checked]="memberSessionRelation.state === 'missing'" (click)="setState(memberSessionRelation, 'missing')">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf='session.presences.length == 0'>
+            <h5 class="warning">There are currently no Members in the Class</h5>
         </div>
         <div class="form-group">
             <label for="lastName">Topic</label>
             <input class="form-control" id="topic" placeholder="Session Topic" [(ngModel)] = "session.topic" name="topic">
+            <small id="topicHelp" class="form-text text-muted">Optional</small>
         </div>
       <button class="btn btn-primary" (click) = "saveSession()">Save</button>    
     </div>

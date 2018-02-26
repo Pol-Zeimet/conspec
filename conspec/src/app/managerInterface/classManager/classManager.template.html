@@ -1,32 +1,28 @@
 <h1>ClassManager</h1>
-<div *ngIf = "selectedClass._id != undefined">
-    <div>
-        <ul>
-            <li>
-                {{selectedClass.name}}
-            </li>
-            <li>
-                {{selectedClass.shedule}}
-            </li>
-        </ul>
+<div *ngIf = "selectedClass != undefined">
+    <div *ngIf = "selectedClass._id != undefined">
+        <div>
+            <h2>{{selectedClass.name}}</h2>
+            <h5>( {{selectedClass.shedule}} )</h5>
+        </div>
+        <ngb-tabset>
+            <ngb-tab>
+                <ng-template ngbTabTitle>Sessions</ng-template>
+                <ng-template ngbTabContent>
+                    <app-session-planner></app-session-planner>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+                <ng-template ngbTabTitle>Members</ng-template>
+                <ng-template ngbTabContent>
+                    <app-member-manager></app-member-manager>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
     </div>
-    <ngb-tabset>
-        <ngb-tab>
-            <ng-template ngbTabTitle>Sessions</ng-template>
-            <ng-template ngbTabContent>
-                <app-session-planner></app-session-planner>
-            </ng-template>
-        </ngb-tab>
-        <ngb-tab>
-            <ng-template ngbTabTitle>Members</ng-template>
-            <ng-template ngbTabContent>
-                <app-member-manager></app-member-manager>
-            </ng-template>
-        </ngb-tab>
-    </ngb-tabset>
-</div>
-<div *ngIf ="selectedClass._id === undefined">
-    <h3>
-        Please create or select a class.
-    </h3>
+        <div *ngIf ="selectedClass === undefined || selectedClass._id === undefined">
+            <h3>
+                Please create or select a class.
+            </h3>
+        </div>
 </div>
