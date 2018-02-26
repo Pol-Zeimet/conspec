@@ -16,25 +16,26 @@ export class ClassesService {
         }
     }
 
-    getAllClasses(): Class[] {
-        let classes = new Array<Class>();
-        classes = [];
-        this.classesDb.find({}, function(err, newDoc){
-            if (newDoc) {
-                console.log(newDoc);
-                newDoc.forEach(element => {
-                    console.log(element);
-                    try {
-                        classes.push(element as Class);
-                    } catch (error) {
-                        console.log(error);
-                    }
-                });
-            } else {
-                console.log(err);
-            }
+    getAllClasses(): Promise<Class[]> {
+        const promise = new Promise<Class[]>((resolve, reject) => {
+            let classes = new Array<Class>();
+            classes = [];
+            this.classesDb.find({}, function(err, newDoc){
+                if (newDoc) {
+                    newDoc.forEach(element => {
+                        try {
+                            classes.push(element as Class);
+                        } catch (error) {
+                            reject(error);
+                        }
+                    });
+                } else {
+                    reject(err);
+                }
+                resolve(classes);
+            });
         });
-        return classes;
+        return promise;
     }
 
     persistClass(classToPersist: Class): Class {

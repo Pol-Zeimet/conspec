@@ -16,31 +16,41 @@ export class SidebarComponent implements OnInit {
     activeClass: Class;
 
     constructor(private classesService: ClassesService, private transmitter: TransmitterService, private router: Router) {
-        this.loadAllClasses();
-        if (this.classes.length > 0) {
-            this.selectClass(this.classes[0]);
-        }
+        this.classes = new Array<Class>();
     }
 
     ngOnInit() {
-        this.transmitter.addedClass$.subscribe(
-            data => {
-                if (data) {
-                    this.classes.push(data);
-                    this.selectClass(data);
+        this.classesService.getAllClasses()
+            .then(fetchedClasses => this.classes = fetchedClasses)
+            .then(() => {
+                this.transmitter.addedClass$.subscribe(
+                    data => {
+                        if (data) {
+                            this.classes.push(data);
+                            this.selectClass(data);
+                        }
+                    });
+                    this.transmitter.modifiedClass$.subscribe(
+                        data => {
+                            if (data && data._id) {
+                                this.loadAllClasses();
+                                this.selectClass(this.classes.find(
+                                    element => element._id.toString() === data._id.toString()
+                                ));
+                            }
+                        });
+                        this.transmitter.poke$.subscribe(
+                            data => {
+                                this.classesService.getAllClasses()
+                                .then(fetchedClasses => this.classes = fetchedClasses);
+                            }
+                        );
+                    });
                 }
-            });
-        this.transmitter.modifiedClass$.subscribe(
-            data => {
-                    this.loadAllClasses();
-                    this.selectClass(this.classes.find(
-                    element => element._id.toString() === data._id.toString()
-                    ));
-            });
-    }
 
     loadAllClasses() {
-        this.classes = this.classesService.getAllClasses();
+        this.classesService.getAllClasses()
+        .then(fetchedClasses => this.classes = fetchedClasses);
     }
 
     selectClass(selectedClass: Class) {

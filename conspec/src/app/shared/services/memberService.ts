@@ -19,7 +19,7 @@ export class MemberService {
 
     persistMember(member: Member): Promise<Member> {
         const promise = new Promise<Member>((resolve, reject) => {
-            this.membersDb.insert(member, function(err, newDoc){
+            this.membersDb.insert(member, function (err, newDoc) {
                 if (newDoc) {
                     member._id = newDoc._id;
                     console.log('assigned _id ' + member._id + ' to ' + member.name);
@@ -36,7 +36,7 @@ export class MemberService {
 
     updateMember(member: Member): Boolean {
         let succ: boolean;
-        this.membersDb.update({_id: member._id}, member, {}, function(err, newDoc){
+        this.membersDb.update({ _id: member._id }, member, {}, function (err, newDoc) {
             if (newDoc) {
                 succ = true;
             } else {
@@ -47,25 +47,40 @@ export class MemberService {
         return succ;
     }
 
-    getAllMembers(): Member[] {
-        const members = new Array<Member>();
-        this.membersDb.find({}, function(err, newDoc){
-            if (newDoc) {
-                console.log('loaded Members');
-                console.log(newDoc);
-                newDoc.forEach(element => {
-                    console.log(element);
-                    try {
-                        members.push(element as Member);
-                    } catch (error) {
-                        console.log(error);
-                    }
-                });
-            } else {
-                console.log(err);
-            }
+    getAllMembers(): Promise<Member[]> {
+        const promise = new Promise<Member[]>((resolve, reject) => {
+            const members = new Array<Member>();
+            this.membersDb.find({}, function (err, newDoc) {
+                if (newDoc) {
+                    newDoc.forEach(element => {
+                        try {
+                            members.push(element as Member);
+                        } catch (error) {
+                            reject(error);
+                        }
+                    });
+                    resolve(members);
+                } else {
+                    reject(err);
+                }
+            });
         });
-        return members;
+        return promise;
+    }
+
+    deleteMember(member: Member): Promise<boolean> {
+        const promise = new Promise<boolean>((resolve) => {
+            this.membersDb.remove({ _id: member._id }, function (err, numRemoved) {
+                if (numRemoved) {
+                    console.log('member with member._id: ' + member._id + ' has been removed');
+                    resolve(true);
+                } else {
+                    console.log(err);
+                    resolve(false);
+                }
+            });
+        });
+        return promise;
     }
 
 }

@@ -1,0 +1,46 @@
+<h3>Member Overview</h3>
+<p>There are currently {{members.length}} saved members.</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope = "col">Name</th>
+            <th scope = "col">Last Name</th>
+            <th scope = "col">Email</th>
+            <th scope = "col">Phone Number</th>
+            <th scope = "col">Verified</th>
+            <th scope = "col">Bonus</th>
+        </tr>
+    </thead>
+    <tbody *ngIf = "members.length > 0" class ="table">
+        <tr *ngFor = "let member of members" (click) = 'select(member)'>
+            <td>{{member.name}}</td>
+            <td>{{member.lastName}}</td>
+            <td>{{member.email}}</td>
+            <td>{{member.tel}}</td>
+            <td>{{member.verified}}</td>
+            <td>{{member.gotBonus}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+<div id="delete" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Deleting Member</h4>
+            <span class="close" (click) = 'closeModal("delete")'>&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>This will delete the selected Member from the system.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" [disabled] = 'selectedMember === undefined' (click)="deleteMember(); closeModal('delete')">Confirm</button>
+            <button type="button" class="btn btn-outline-dark" (click)="closeModal('delete')">Cancel</button>
+        </div>
+    </div>
+</div>
+  
+<button *ngIf = 'selectedMember' class='btn btn-primary'>Edit Selected Member</button>
+<button *ngIf = 'selectedMember' class='btn btn-primary' (click) = "openModal('delete')">Delete Member</button>
+<button class= 'btn btn-primary' >Add new Member</button>

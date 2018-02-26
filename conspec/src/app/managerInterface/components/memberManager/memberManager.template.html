@@ -30,20 +30,60 @@
     </tbody>
 </table>
 
-<ng-template #removeModal let-c="close">
-    <div class="modal-header">
-      <h4 class="modal-title">Removing Member</h4>
+<div id="remove" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Removing Member</h4>
+            <span class="close" (click) = 'closeModal("remove")'>&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>This will remove the selected Member from the class, but not delete it entirely.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" [disabled] = 'selectedMember === undefined' (click)='removeMemberFromClass(); closeModal("remove")'>Confirm</button>
+            <button type="button" class="btn btn-outline-dark" (click)='closeModal("remove")'>Cancel</button>
+        </div>
+    </div>
+</div>
 
+<div id='selectExisting' class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Select Existing Member</h4>
+            <span class="close" (click) = 'closeModal("selectExisting")'>&times;</span>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope = "col">Name</th>
+                        <th scope = "col">Last Name</th>
+                        <th scope = "col">Email</th>
+                        <th scope = "col">Phone Number</th>
+                        <th scope = "col">Verified</th>
+                        <th scope = "col">Bonus</th>
+                    </tr>
+                </thead>
+                <tbody class ="table">
+                    <tr *ngFor = "let member of availableMembers" (click) = "existingMember = member">
+                        <td>{{member.name}}</td>
+                        <td>{{member.lastName}}</td>
+                        <td>{{member.email}}</td>
+                        <td>{{member.tel}}</td>
+                        <td>{{member.verified}}</td>
+                        <td>{{member.gotBonus}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" [disabled] = 'existingMember === undefined' class="btn btn-outline-dark" (click)='addNew(); closeModal("selectExisting")'>Confirm</button>
+            <button type="button" class="btn btn-outline-dark" (click)='closeModal("selectExisting")'>Cancel</button>
+        </div>
     </div>
-    <div class="modal-body">
-        <p>This will remove the selected Member from the class, but not delete it entirely.</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="removeMember(); c()">Confirm</button>
-      <button type="button" class="btn btn-outline-dark" (click)="c()">Cancel</button>
-    </div>
-  </ng-template>
-  
-<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()">Edit Selected Member</button>
-<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "openModal(removeModal)">Remove Member from Class</button>
+</div>
+    
+    <button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()">Edit Selected Member</button>
+    <button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "openModal('remove')">Remove Member from Class</button>
 <button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()">Add new Member</button>
+<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "openModal('selectExisting')">Add existing Member</button>

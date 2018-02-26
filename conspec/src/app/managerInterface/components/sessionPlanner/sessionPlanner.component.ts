@@ -61,8 +61,14 @@ export class SessionPlannerComponent implements OnInit {
         }
     }
 
-    openModal(content) {
-        this.modalService.open(content);
+    openModal(id: string) {
+        const modal = document.getElementById(id);
+        modal.style.display = 'block';
+    }
+
+    closeModal(id: string) {
+        const modal = document.getElementById(id);
+        modal.style.display = 'none';
     }
 
     editSession() {
