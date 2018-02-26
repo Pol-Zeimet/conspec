@@ -53,19 +53,19 @@ export class MemberOverviewComponent implements OnInit {
                         (resolve) => {
                             classes.forEach(
                                 cl => {
-                                    const memberIndex = cl.members.findIndex(member => {
+                                    const membersIndex = cl.members.findIndex(member => {
                                         return member._id.toString() === this.selectedMember._id.toString();
                                     });
-                                    if (memberIndex >= 0) {
-                                        cl.members.splice(memberIndex, 1);
+                                    if (membersIndex >= 0) {
+                                        cl.members.splice(membersIndex, 1);
                                         cl.sessions.forEach(
                                             session => {
-                                                const relationIndex = session.presences.findIndex(
-                                                    relation => {
+                                                const sessionIndex = session.presences.findIndex(
+                                                    (relation) => {
                                                         return relation.member._id.toString() === this.selectedMember._id.toString();
                                                     });
-                                                if (relationIndex >= 0) {
-                                                    session.presences.splice(relationIndex, 1);
+                                                if (sessionIndex >= 0) {
+                                                    session.presences = session.presences.splice(sessionIndex, 1);
                                                 }
                                             });
                                         this.classesService.updateClass(cl);

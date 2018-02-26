@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Class, Member, MemberSessionRelation } from '../../../shared/models/index';
+import { Class, Member } from '../../../shared/models/index';
 import { TransmitterService } from '../../../shared/services/transmitterService';
 import { Router } from '@angular/router';
 import { ClassesService } from '../../../shared/services/classesService';
@@ -67,10 +67,6 @@ export class MemberManagerComponent implements OnInit {
     addNew() {
         this.placesLeft.pop();
         this.selectedClass.members.push(this.existingMember);
-
-        this.selectedClass.sessions.forEach(session => {
-            session.presences.push(new MemberSessionRelation(this.existingMember, 'no Data'));
-        });
 
         const index = this.availableMembers.indexOf(this.existingMember);
         this.availableMembers.splice(index, 1);
