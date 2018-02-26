@@ -1,6 +1,4 @@
-Sessions of this class
-
-<table *ngIF = "selectedClass" class="table table-bordered">
+<table *ngIf = "selectedClass.sessions.length > 0" class="table table-bordered">
     <thead>
         <tr>
             <th scope = "col">Name</th>
@@ -19,7 +17,9 @@ Sessions of this class
         </tr>
     </tbody>
 </table>
-
+<div *ngIf = "selectedClass.sessions.length == 0">
+    <p>There are no sessions yet for this class</p>
+</div>
 <div id="remove" class="modal">
         <div class="modal-content">
             <div class="modal-header">

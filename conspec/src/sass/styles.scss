@@ -23,6 +23,8 @@ $hoverColor: darken($color, 10);
 }
 #class-list{
     display: none;
+    overflow-y: overlay;
+    max-height: 300px;
 }
 
 #open{

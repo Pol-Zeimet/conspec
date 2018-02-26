@@ -9,7 +9,7 @@
             <th scope = "col">Bonus</th>
         </tr>
     </thead>
-    <tbody *ngIf = "selectedClass" class ="table">
+    <tbody *ngIf = "selectedClass">
         <tr *ngFor = "let member of selectedClass.members" (click) = 'select(member)'>
             <td>{{member.name}}</td>
             <td>{{member.lastName}}</td>
@@ -53,7 +53,7 @@
             <span class="close" (click) = 'closeModal("selectExisting")'>&times;</span>
         </div>
         <div class="modal-body">
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope = "col">Name</th>
@@ -64,7 +64,7 @@
                         <th scope = "col">Bonus</th>
                     </tr>
                 </thead>
-                <tbody class ="table">
+                <tbody>
                     <tr *ngFor = "let member of availableMembers" (click) = "existingMember = member">
                         <td>{{member.name}}</td>
                         <td>{{member.lastName}}</td>
