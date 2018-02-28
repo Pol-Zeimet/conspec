@@ -19,10 +19,29 @@
                 </ng-template>
             </ngb-tab>
         </ngb-tabset>
-    </div>
-        <div *ngIf ="selectedClass === undefined || selectedClass._id === undefined">
-            <h3>
-                Please create or select a class.
-            </h3>
+        <div id="delete" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Deleting Class</h4>
+                    <span class="close" (click) = 'closeModal("delete")'>&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>This will delete the current Class from the system.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" [disabled] = 'selectedClass === undefined' (click)="deleteClass(); closeModal('delete')">
+                        Confirm
+                    </button>
+                    <button type="button" class="btn btn-outline-dark" (click)="closeModal('delete')">Cancel</button>
+                </div>
+            </div>
         </div>
+        <button  class='btn btn-primary' (click)="editClass()"><span class="fa fa-wrench"></span> Edit Class</button>
+        <button  class='btn btn-primary' (click)="openModal('delete')"><span class="fa fa-trash-alt"></span> Delete Class</button>
+    </div>
+</div>
+<div *ngIf ="selectedClass === undefined || selectedClass._id === undefined">
+    <h3>
+        Please create or select a class.
+    </h3>
 </div>

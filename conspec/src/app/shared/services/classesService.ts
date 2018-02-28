@@ -64,4 +64,19 @@ export class ClassesService {
         });
         return succ;
     }
+
+    deleteClass(removedClass: Class): Promise<boolean> {
+        const promise = new Promise<boolean>((resolve) => {
+            this.classesDb.remove({ _id: removedClass._id }, function (err, numRemoved) {
+                if (numRemoved) {
+                    console.log('class with class._id: ' + removedClass._id + ' has been removed');
+                    resolve(true);
+                } else {
+                    console.log(err);
+                    resolve(false);
+                }
+            });
+        });
+        return promise;
+    }
 }

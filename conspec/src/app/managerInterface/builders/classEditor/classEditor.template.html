@@ -1,25 +1,23 @@
-<h1>Creating a new Class</h1>
-
+<h1>Editing Class</h1>
 <div class="card">
     <div class="card-block">
-      <h4 class="card-title">New Class</h4>
       <form>
         <div class="form-group">
             <label for="className">Class name</label>
-            <input class="form-control" id="className" aria-describedby="nameHelp" placeholder="Name" [(ngModel)] = "newClass.name" name="className">
+            <input class="form-control" id="className" aria-describedby="nameHelp" placeholder="Name" [(ngModel)] = "selectedClass.name" name="className">
             <small id="nameHelp" class="form-text text-muted">The name by which the class will be listed</small>
         </div>
         <div class="form-group">
             <label for="classShedule">Class shedule</label>
-            <input class="form-control" id="classShedule" aria-describedby="sheduleHelp" placeholder="Shedule" [(ngModel)] = "newClass.shedule" name="classShedule">
+            <input class="form-control" id="classShedule" aria-describedby="sheduleHelp" placeholder="Shedule" [(ngModel)] = "selectedClass.shedule" name="classShedule">
             <small id="sheduleHelp" class="form-text text-muted">Weekday and time of the Class, i.e. Thursday 18:00-19:30</small>
         </div>
         <div class="form-group">
             <label for="classPlaces">Available Places</label>
-            <input type="number" min = '1' class="form-control" id="classPlaces" aria-describedby="placesHelp" placeholder="Number of Places" [(ngModel)] = "newClass.places" name="classPlaces">
+            <input type="number" min = '1' class="form-control" id="classPlaces" aria-describedby="placesHelp" placeholder="Number of Places" [(ngModel)] = "selectedClass.places" name="classPlaces">
             <small id="placesHelp" class="form-text text-muted">The amount of available places in the class</small>
         </div>
       </form>
-      <button class="btn btn-primary" (click) = "createNewClass()"><i class="fa fa-save"></i> Create Class</button>    
+      <button class="btn btn-primary" (click) = "saveClass()"> <i class="fa fa-save"></i> Save Class</button>    
     </div>
   </div>
