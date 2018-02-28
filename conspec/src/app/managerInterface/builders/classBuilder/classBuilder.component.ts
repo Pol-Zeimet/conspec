@@ -3,6 +3,7 @@ import { TransmitterService } from '../../../shared/services/transmitterService'
 import { ClassesService } from '../../../shared/services/classesService';
 import { Class } from '../../../shared/models';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 
@@ -19,12 +20,17 @@ export class ClassBuilderComponent implements OnInit {
     constructor(
         private transmittter: TransmitterService,
         private classesService: ClassesService,
-        private router: Router) {
+        private router: Router,
+        private location: Location) {
 
     }
 
     ngOnInit() {
         this.newClass = new Class();
+    }
+
+    goBack() {
+        this.location.back();
     }
 
 

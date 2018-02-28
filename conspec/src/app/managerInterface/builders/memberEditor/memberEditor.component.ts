@@ -34,6 +34,10 @@ export class MemberEditorComponent implements OnInit {
         );
     }
 
+    goBack() {
+        this.location.back();
+    }
+
     saveMember() {
         this.memberservice.updateMember(this.member);
         if (this.selectedClass !== undefined) {

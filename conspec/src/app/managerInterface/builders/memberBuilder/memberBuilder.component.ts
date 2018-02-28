@@ -34,6 +34,10 @@ export class MemberBuilderComponent implements OnInit {
         );
     }
 
+    goBack() {
+        this.location.back();
+    }
+
     saveMember() {
         this.memberservice.persistMember(this.member)
         .then( (member) => this.member = member, (member) => this.member = member)

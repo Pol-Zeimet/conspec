@@ -3,9 +3,9 @@ import { Session, Class, MemberSessionRelation } from '../../../shared/models';
 import { TransmitterService } from '../../../shared/services/transmitterService';
 import { SessionService } from '../../../shared/services/sessionService';
 import { ClassesService } from '../../../shared/services/classesService';
-import { error } from 'util';
 import { CustDate } from '../../../shared/models/custDate';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 
@@ -25,7 +25,8 @@ export class SessionEditorComponent implements OnInit {
     constructor(private transmitter: TransmitterService,
                 private sessionService: SessionService,
                 private classesService: ClassesService,
-                private router: Router) {
+                private router: Router,
+                private location: Location) {
                 }
 
     ngOnInit() {
@@ -42,6 +43,10 @@ export class SessionEditorComponent implements OnInit {
                 this.selectedClass = classData;
             }
         );
+    }
+
+    goBack() {
+        this.location.back();
     }
 
     setState(relation: MemberSessionRelation, state: String) {

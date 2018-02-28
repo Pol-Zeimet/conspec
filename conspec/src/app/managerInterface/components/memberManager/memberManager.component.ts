@@ -32,9 +32,11 @@ export class MemberManagerComponent implements OnInit {
     ngOnInit() {
         this.transmitter.activeClass$.subscribe(
             data => {
-                this.selectedClass = data;
-                this.placesLeft = new Array<Number>(this.selectedClass.places - this.selectedClass.members.length).fill(0);
-                this.getAvailableMembers().then(members => this.availableMembers = members);
+                if (data) {
+                    this.selectedClass = data;
+                    this.placesLeft = new Array<Number>(this.selectedClass.places - this.selectedClass.members.length).fill(0);
+                    this.getAvailableMembers().then(members => this.availableMembers = members);
+                }
             }
         );
     }

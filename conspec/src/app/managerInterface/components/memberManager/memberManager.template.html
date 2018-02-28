@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody *ngIf = "selectedClass">
-        <tr *ngFor = "let member of selectedClass.members" (click) = 'select(member)'>
+        <tr *ngFor = "let member of selectedClass.members" class="hoverable" [class.selected] ="member === selectedMember" (click) = 'select(member)'>
             <td>{{member.name}}</td>
             <td>{{member.lastName}}</td>
             <td>{{member.email}}</td>
@@ -65,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor = "let member of availableMembers" (click) = "existingMember = member">
+                    <tr *ngFor = "let member of availableMembers" class="hoverable" [class.selected] ="member === existingMember" (click) = "existingMember = member">
                         <td>{{member.name}}</td>
                         <td>{{member.lastName}}</td>
                         <td>{{member.email}}</td>

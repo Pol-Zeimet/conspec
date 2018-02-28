@@ -3,6 +3,7 @@ import { TransmitterService } from '../../../shared/services/transmitterService'
 import { ClassesService } from '../../../shared/services/classesService';
 import { Class } from '../../../shared/models';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 
@@ -19,7 +20,8 @@ export class ClassEditorComponent implements OnInit {
     constructor(
         private transmittter: TransmitterService,
         private classesService: ClassesService,
-        private router: Router) {
+        private router: Router,
+        private location: Location) {
     }
 
     ngOnInit() {
@@ -29,6 +31,9 @@ export class ClassEditorComponent implements OnInit {
         });
     }
 
+    goBack() {
+        this.location.back();
+    }
 
     saveClass() {
         let valid = true;

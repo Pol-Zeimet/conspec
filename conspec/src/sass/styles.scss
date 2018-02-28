@@ -3,10 +3,24 @@
 
 $color: aqua;
 $hoverColor: darken($color, 10);
+$selectedColor: darken($hoverColor, 10);
 
 .wrapper {
     display: flex;
     align-items: stretch;
+}
+
+.selected {
+    background-color: $selectedColor;
+    color: white;
+}
+
+.hoverable {
+    cursor: pointer;
+}
+.hoverable:hover {
+    background-color: $hoverColor;
+    color: white;
 }
 
 .sidebar .list-group {
@@ -14,13 +28,23 @@ $hoverColor: darken($color, 10);
         padding: 6px 13.5px;
         font-size: initial;
         cursor: pointer;
-
-    }
-    .list-group-item:hover{
-      background-color: $hoverColor;
-      color: white;
     }
 }
+
+.form-check-input.ng-untouched.ng-pristine.ng-valid {
+    margin-top: 0px;
+    width: 17px;
+    height: 17px;
+}
+
+.form-check-label{
+    padding: 0px;
+}
+
+.btn {
+    margin-bottom: 5px;
+}
+
 #class-list{
     display: none;
     overflow-y: overlay;

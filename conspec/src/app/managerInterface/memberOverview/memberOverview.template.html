@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody *ngIf = "members.length > 0" class ="table">
-        <tr *ngFor = "let member of members" (click) = 'select(member)'>
+        <tr *ngFor = "let member of members" class="hoverable" [class.selected] ="member === selectedMember" (click) = 'select(member)'>
             <td>{{member.name}}</td>
             <td>{{member.lastName}}</td>
             <td>{{member.email}}</td>
@@ -41,6 +41,6 @@
     </div>
 </div>
   
-<button *ngIf = 'selectedMember' class='btn btn-primary' (click)="editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
-<button *ngIf = 'selectedMember' class='btn btn-primary' (click)="openModal('delete')"><span class="fa fa-trash-alt"></span> Delete Member</button>
+<button *ngIf = 'selectedMember' class='btn btn-secondary' (click)="editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
+<button *ngIf = 'selectedMember' class='btn btn-secondary' (click)="openModal('delete')"><span class="fa fa-trash"></span> Delete Member</button>
 <button class= 'btn btn-primary' (click)="createNewMember()" ><span class="fa fa-user-plus"></span> Add new Member</button>
