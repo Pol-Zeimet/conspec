@@ -41,6 +41,6 @@
     </div>
 </div>
   
-<button *ngIf = 'selectedMember' class='btn btn-primary'>Edit Selected Member</button>
-<button *ngIf = 'selectedMember' class='btn btn-primary' (click) = "openModal('delete')">Delete Member</button>
-<button class= 'btn btn-primary' >Add new Member</button>
+<button *ngIf = 'selectedMember' class='btn btn-primary' (click)="editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
+<button *ngIf = 'selectedMember' class='btn btn-primary' (click)="openModal('delete')"><span class="fa fa-trash-alt"></span> Delete Member</button>
+<button class= 'btn btn-primary' (click)="createNewMember()" ><span class="fa fa-user-plus"></span> Add new Member</button>

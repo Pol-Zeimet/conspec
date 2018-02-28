@@ -26,7 +26,6 @@ export class MemberService {
                     resolve(member);
                 } else {
                     console.log(err);
-                    member = undefined;
                     reject(member);
                 }
             });

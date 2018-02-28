@@ -3,6 +3,7 @@ import { Member } from '../../shared/models';
 import { MemberService } from '../../shared/services/memberService';
 import { ClassesService } from '../../shared/services/classesService';
 import { TransmitterService } from '../../shared/services/transmitterService';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,15 @@ export class MemberOverviewComponent implements OnInit {
     selectedMember: Member;
     members: Member[];
 
+    constructor(
+        private memberService: MemberService,
+        private classesService: ClassesService,
+        private transmitter: TransmitterService,
+        private router: Router
+    ) {
+        this.members = new Array<Member>();
+    }
+
     ngOnInit(): void {
         this.memberService.getAllMembers()
             .then(
@@ -22,13 +32,6 @@ export class MemberOverviewComponent implements OnInit {
             );
     }
 
-    constructor(
-        private memberService: MemberService,
-        private classesService: ClassesService,
-        private transmitter: TransmitterService
-    ) {
-        this.members = new Array<Member>();
-    }
     select(member: Member) {
         this.selectedMember = member;
     }
@@ -42,6 +45,17 @@ export class MemberOverviewComponent implements OnInit {
     closeModal(id: string) {
         const modal = document.getElementById(id);
         modal.style.display = 'none';
+    }
+
+    createNewMember() {
+        this.transmitter.transmitActiveClass(undefined);
+        this.router.navigateByUrl('/member/new');
+    }
+
+    editMember() {
+        this.transmitter.transmitActiveClass(undefined);
+        this.transmitter.transmitMember(this.selectedMember);
+        this.router.navigateByUrl('/member/edit');
     }
 
     deleteMember() {

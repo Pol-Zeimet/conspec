@@ -23,7 +23,6 @@ export class MemberBuilderComponent implements OnInit {
         private memberservice: MemberService,
         private classesService: ClassesService,
         private location: Location,
-        private router: Router,
         private transmitter: TransmitterService
                 ) {
                     this.member = new Member();
@@ -40,13 +39,19 @@ export class MemberBuilderComponent implements OnInit {
         .then( (member) => this.member = member, (member) => this.member = member)
         .then(() => {
             if (this.member._id !== undefined) {
-                this.selectedClass.members.push(this.member);
-                this.selectedClass.sessions.forEach(session => session.presences.push(new MemberSessionRelation(this.member, 'no Data')));
-                if (this.classesService.updateClass(this.selectedClass)) {
-                    this.transmitter.transmitModifiedClass(this.selectedClass);
+                if (this.selectedClass !== undefined) {
+                    this.selectedClass.members.push(this.member);
+                    this.selectedClass.sessions.forEach(session => {
+                        session.presences.push(new MemberSessionRelation(this.member, 'no Data'));
+                    });
+                    if (this.classesService.updateClass(this.selectedClass)) {
+                        this.transmitter.transmitModifiedClass(this.selectedClass);
+                    }
                 }
-                this.router.navigateByUrl('/class');
+            } else {
+                console.log('could not save Member');
             }
+            this.location.back();
         });
     }
 }

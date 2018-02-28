@@ -22,14 +22,14 @@
             <input class="form-control" id="pone" placeholder="Phone number" [(ngModel)] = "member.tel" name="phone">
         </div>
         <div class="form-check">
-            <label class="form-check-label" for="verifies">Is Verified</label>
+            <label class="form-check-label" for="verifies">Is Verified </label>
             <input type="checkbox" class="form-check-input" id="verified" [(ngModel)] = "member.verified" name = "verified">
         </div>
         <div class="form-check">
-            <label class="form-check-label" for="bonus">Got Bonus</label>
+            <label class="form-check-label" for="bonus">Got Bonus </label>
             <input type="checkbox" class="form-check-input" id="bonus" [(ngModel)] = "member.gotBonus" name = "bonus">
         </div>
       </form>
-      <button class="btn btn-primary" (click) = "saveMember()">Save</button>    
+      <button class="btn btn-primary" (click) = "saveMember()"><i class="fa fa-save"></i> Save</button>    
     </div>
   </div>

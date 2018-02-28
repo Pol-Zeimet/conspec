@@ -83,7 +83,7 @@
     </div>
 </div>
     
-    <button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()">Edit Selected Member</button>
-    <button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "openModal('remove')">Remove Member from Class</button>
-<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()">Add new Member</button>
-<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "openModal('selectExisting')">Add existing Member</button>
+<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
+<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "openModal('remove')"><span class="fa fa-minus"></span> Remove Member from Class</button>
+<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()"><span class="fa fa-user-plus"></span> Add new Member</button>
+<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "openModal('selectExisting')"><span class="fa fa-address-book"></span> Add existing Member</button>

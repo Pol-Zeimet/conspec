@@ -36,8 +36,10 @@ export class MemberEditorComponent implements OnInit {
 
     saveMember() {
         this.memberservice.updateMember(this.member);
-        if (this.classesService.updateClass(this.selectedClass)) {
-            this.transmitter.transmitModifiedClass(this.selectedClass);
+        if (this.selectedClass !== undefined) {
+            if (this.classesService.updateClass(this.selectedClass)) {
+                this.transmitter.transmitModifiedClass(this.selectedClass);
+            }
         }
         this.location.back();
     }
