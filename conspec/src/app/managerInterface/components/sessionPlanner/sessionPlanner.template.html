@@ -36,6 +36,6 @@
         </div>
     </div>
 
-<button *ngIf = 'selectedSession' class="btn btn-secondary" (click) = "openModal('remove')">Delete Session</button>
-<button class= 'btn btn-primary' (click) = "addNewSession()">Add new Session</button>
-<button *ngIf='selectedSession' class= 'btn btn-primary' (click) = "editSession()">Edit Session</button>
+<button *ngIf='selectedSession' class= 'btn btn-primary' (click) = "editSession()"><span class="fa fa-wrench"></span> Edit Session</button>
+<button *ngIf = 'selectedSession' class="btn btn-secondary" (click) = "openModal('remove')"><span class="fa fa-trash-alt"></span> Delete Session</button>
+<button class= 'btn btn-primary' (click) = "addNewSession()"><span class="fa fa-calendar-plus"></span> Add new Session</button>

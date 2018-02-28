@@ -10,6 +10,7 @@ const routes: Routes = [
         { path: '',         redirectTo: 'class', pathMatch: 'full' },
         { path: 'class',    loadChildren: './classManager/classManager.module#ClassManagerModule'},
         { path: 'class/new', loadChildren: './builders/classBuilder/classBuilder.module#ClassBuilderModule'},
+        { path: 'class/edit', loadChildren: './builders/classEditor/classEditor.module#ClassEditorModule'},
         { path: 'members', loadChildren: './memberOverview/memberOverview.module#MemberOverviewModule'},
         { path: 'member/new', loadChildren: './builders/memberBuilder/memberBuilder.module#MemberBuilderModule'},
         { path: 'member/edit', loadChildren: './builders/memberEditor/memberEditor.module#MemberEditorModule'},
