@@ -6,6 +6,7 @@ import { ClassesService } from '../../../shared/services/classesService';
 import { CustDate } from '../../../shared/models/custDate';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { LoggerService } from '../../../shared/services/loggerService';
 
 
 
@@ -56,8 +57,6 @@ export class SessionEditorComponent implements OnInit {
 
     saveSession() {
         if (this.day && this.month && this.year) {
-
-            try {
                 const date = new CustDate();
                 if (date.setDate(this.session.date.day, this.session.date.month, this.session.date.year)) {
                     this.selectedClass.sessions.sort(
@@ -69,9 +68,7 @@ export class SessionEditorComponent implements OnInit {
                     }
                     this.router.navigateByUrl('/class');
                 }
-            } catch (error) {
-                console.log(error);
             }
-        }
     }
 }
+

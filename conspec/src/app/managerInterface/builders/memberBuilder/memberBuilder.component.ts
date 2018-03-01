@@ -7,6 +7,7 @@ import { TransmitterService } from '../../../shared/services/transmitterService'
 import { ClassesService } from '../../../shared/services/classesService';
 import { error } from 'util';
 import { Router } from '@angular/router';
+import { LoggerService } from '../../../shared/services/loggerService';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class MemberBuilderComponent implements OnInit {
         private memberservice: MemberService,
         private classesService: ClassesService,
         private location: Location,
-        private transmitter: TransmitterService
+        private transmitter: TransmitterService,
                 ) {
                     this.member = new Member();
                 }
@@ -52,8 +53,6 @@ export class MemberBuilderComponent implements OnInit {
                         this.transmitter.transmitModifiedClass(this.selectedClass);
                     }
                 }
-            } else {
-                console.log('could not save Member');
             }
             this.location.back();
         });

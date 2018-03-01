@@ -10,6 +10,7 @@ import { ClassesService } from '../shared/services/classesService';
 import { TransmitterService } from '../shared/services/transmitterService';
 import { MemberService } from '../shared/services/memberService';
 import { SessionService } from '../shared/services/sessionService';
+import { LoggerService } from '../shared/services/loggerService';
 
 
 @NgModule({
@@ -21,6 +22,6 @@ import { SessionService } from '../shared/services/sessionService';
     CommonModule,
     ManagerInterfaceRoutingModule,
   ],
-  providers: [ClassesService, TransmitterService, MemberService, SessionService],
+  providers: [ClassesService, TransmitterService, MemberService, SessionService, LoggerService],
 })
 export class ManagerInterfaceModule { }

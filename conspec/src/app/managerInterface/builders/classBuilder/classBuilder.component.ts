@@ -39,8 +39,6 @@ export class ClassBuilderComponent implements OnInit {
             const persistedClass = this.classesService.persistClass(this.newClass);
             if (persistedClass) {
                 this.transmittter.transmitAddedClass(persistedClass);
-            } else {
-                console.log('something somewhere somehow went terribly wrong');
             }
             this.router.navigateByUrl('/class');
         }

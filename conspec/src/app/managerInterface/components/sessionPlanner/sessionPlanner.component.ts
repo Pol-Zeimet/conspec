@@ -31,7 +31,6 @@ export class SessionPlannerComponent implements OnInit {
             this.transmitter.activeClass$.subscribe(
                 data => {
                     if (data) {
-                        console.log(data);
                         this.selectedClass = data;
                     }
                 }

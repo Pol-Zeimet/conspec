@@ -9,7 +9,7 @@
             <i class="fa fa-caret-right" id='closed'></i>
             <i class="fa fa-caret-down" id ='open'></i>
         </li>
-        <ul class="list-group" id = "class-list">
+        <ul class="list-group" id = "class-list" style="display: none">
             <li *ngFor='let class of classes' class ='list-group-item hoverable' [class.selected] ="class === activeClass" (click)="selectClass(class)">
                 {{class.name}}
             </li>

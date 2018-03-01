@@ -62,13 +62,18 @@ export class SidebarComponent implements OnInit {
     toggleClasses() {
         switch (document.getElementById('class-list').style.display) {
             case 'none': {
-
                 document.getElementById('class-list').style.display = 'block';
                 document.getElementById('open').style.display = 'inline';
                 document.getElementById('closed').style.display = 'none';
                 break;
             }
             case 'block':
+            {
+                document.getElementById('class-list').style.display = 'none';
+                document.getElementById('open').style.display = 'none';
+                document.getElementById('closed').style.display = 'inline';
+                break;
+            }
             default: {
 
                 document.getElementById('class-list').style.display = 'none';

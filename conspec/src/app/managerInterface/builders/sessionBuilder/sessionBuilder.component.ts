@@ -61,8 +61,6 @@ export class SessionBuilderComponent implements OnInit {
 
     saveSession() {
         if (this.day && this.month && this.year) {
-            try {
-
                 if (this.session.date.setDate(this.day, this.month, this.year)) {
                     this.selectedClass.sessions.push(this.session);
                     this.selectedClass.sessions.sort(
@@ -74,9 +72,7 @@ export class SessionBuilderComponent implements OnInit {
                     }
                     this.router.navigateByUrl('/class');
                 }
-            } catch (error) {
-                console.log(error);
-            }
         }
     }
 }
+
