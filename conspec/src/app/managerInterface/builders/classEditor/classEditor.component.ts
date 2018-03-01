@@ -39,17 +39,29 @@ export class ClassEditorComponent implements OnInit {
         let valid = true;
         if (this.selectedClass.name === '') {
             valid = false;
+            document.getElementById('nameWarning').style.display = 'block';
+        } else {
+            document.getElementById('nameWarning').style.display = 'none';
         }
 
         if (this.selectedClass.shedule === '') {
             valid = false;
+            document.getElementById('sheduleWarning').style.display = 'block';
+        } else {
+            document.getElementById('sheduleWarning').style.display = 'none';
         }
         if (this.selectedClass.places <= 0 ) {
             valid = false;
+            document.getElementById('placesWarning').style.display = 'block';
+        } else {
+            document.getElementById('placesWarning').style.display = 'none';
         }
 
         if (this.selectedClass.places < this.selectedClass.members.length) {
             valid = false;
+            document.getElementById('placesWarning2').style.display = 'block';
+        } else {
+            document.getElementById('placesWarning2').style.display = 'none';
         }
 
         if (valid) {

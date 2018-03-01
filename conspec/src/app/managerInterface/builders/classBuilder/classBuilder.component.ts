@@ -35,7 +35,28 @@ export class ClassBuilderComponent implements OnInit {
 
 
     createNewClass() {
-        if ((this.newClass.name !== '') &&  (this.newClass.shedule !== '')  &&  (this.newClass.places > 0 ) ) {
+        let valid = true;
+        if (this.newClass.name === '') {
+            valid = false;
+            document.getElementById('nameWarning').style.display = 'block';
+        } else {
+            document.getElementById('nameWarning').style.display = 'none';
+        }
+
+        if (this.newClass.shedule === '') {
+            valid = false;
+            document.getElementById('sheduleWarning').style.display = 'block';
+        } else {
+            document.getElementById('sheduleWarning').style.display = 'none';
+        }
+        if (this.newClass.places <= 0 ) {
+            valid = false;
+            document.getElementById('placesWarning').style.display = 'block';
+        } else {
+            document.getElementById('placesWarning').style.display = 'none';
+        }
+
+        if (valid) {
             const persistedClass = this.classesService.persistClass(this.newClass);
             if (persistedClass) {
                 this.transmittter.transmitAddedClass(persistedClass);

@@ -39,6 +39,22 @@ export class MemberEditorComponent implements OnInit {
     }
 
     saveMember() {
+        let valid = true;
+        if (this.member.name === '') {
+            valid = false;
+            document.getElementById('nameWarning').style.display = 'block';
+        } else {
+            document.getElementById('nameWarning').style.display = 'none';
+        }
+
+        if (this.member.lastName === '') {
+            valid = false;
+            document.getElementById('lastNameWarning').style.display = 'block';
+        } else {
+            document.getElementById('lastNameWarning').style.display = 'none';
+        }
+
+        if (valid) {
         this.memberservice.updateMember(this.member);
         if (this.selectedClass !== undefined) {
             if (this.classesService.updateClass(this.selectedClass)) {
@@ -46,5 +62,6 @@ export class MemberEditorComponent implements OnInit {
             }
         }
         this.location.back();
+        }
     }
 }

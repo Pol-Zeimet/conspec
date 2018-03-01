@@ -40,21 +40,38 @@ export class MemberBuilderComponent implements OnInit {
     }
 
     saveMember() {
-        this.memberservice.persistMember(this.member)
-        .then( (member) => this.member = member, (member) => this.member = member)
-        .then(() => {
-            if (this.member._id !== undefined) {
-                if (this.selectedClass !== undefined) {
-                    this.selectedClass.members.push(this.member);
-                    this.selectedClass.sessions.forEach(session => {
-                        session.presences.push(new MemberSessionRelation(this.member, 'no Data'));
-                    });
-                    if (this.classesService.updateClass(this.selectedClass)) {
-                        this.transmitter.transmitModifiedClass(this.selectedClass);
+        let valid = true;
+        if (this.member.name === '') {
+            valid = false;
+            document.getElementById('nameWarning').style.display = 'block';
+        } else {
+            document.getElementById('nameWarning').style.display = 'none';
+        }
+
+        if (this.member.lastName === '') {
+            valid = false;
+            document.getElementById('lastNameWarning').style.display = 'block';
+        } else {
+            document.getElementById('lastNameWarning').style.display = 'none';
+        }
+
+        if (valid) {
+            this.memberservice.persistMember(this.member)
+            .then( (member) => this.member = member, (member) => this.member = member)
+            .then(() => {
+                if (this.member._id !== undefined) {
+                    if (this.selectedClass !== undefined) {
+                        this.selectedClass.members.push(this.member);
+                        this.selectedClass.sessions.forEach(session => {
+                            session.presences.push(new MemberSessionRelation(this.member, 'no Data'));
+                        });
+                        if (this.classesService.updateClass(this.selectedClass)) {
+                            this.transmitter.transmitModifiedClass(this.selectedClass);
+                        }
                     }
                 }
-            }
-            this.location.back();
-        });
+                this.location.back();
+            });
+        }
     }
 }
