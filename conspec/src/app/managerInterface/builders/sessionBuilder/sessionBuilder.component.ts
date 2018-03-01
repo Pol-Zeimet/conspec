@@ -60,7 +60,7 @@ export class SessionBuilderComponent implements OnInit {
 
 
     saveSession() {
-        if (this.day && this.month && this.year) {
+        if (this.day > 0 && this.month > 0 && this.year > 0) {
                 if (this.session.date.setDate(this.day, this.month, this.year)) {
                     this.selectedClass.sessions.push(this.session);
                     this.selectedClass.sessions.sort(
@@ -71,7 +71,11 @@ export class SessionBuilderComponent implements OnInit {
                         this.transmitter.transmitModifiedClass(this.selectedClass);
                     }
                     this.router.navigateByUrl('/class');
+                } else {
+                    document.getElementById('dateWarning').style.display = 'block';
                 }
+        } else {
+            document.getElementById('dateWarning').style.display = 'block';
         }
     }
 }

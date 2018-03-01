@@ -15,6 +15,9 @@
                 <label class = "datepicker-label" for='year'>*Year:</label>
                 <input id='year' class="form-control datepicker-long" type = 'number' min ='2000' name = 'year' [(ngModel)] = 'year' >
             </form>
+            <div class="alert alert-danger" id ='dateWarning' style = 'display: none' role="alert">
+                Please enter a valid date.
+            </div>
         </div>
         <h5>Presences:</h5>
         <table *ngIf='session.presences.length > 0' class="table table-bordered">

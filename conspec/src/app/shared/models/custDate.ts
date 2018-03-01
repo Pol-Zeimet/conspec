@@ -7,14 +7,14 @@ export class CustDate {
     year: Number;
 
     constructor() {
-        this.day = 1;
-        this.month = 1;
-        this.year = 2000;
+        this.day = undefined;
+        this.month = undefined;
+        this.year = undefined;
     }
 
 
     setDate(day: Number, month: Number, year: Number): boolean {
-        if (this.isValidDate) {
+        if (this.isValidDate(day, month, year)) {
             this.day = day;
             this.month = month;
             this.year = year;

@@ -56,9 +56,10 @@ export class SessionEditorComponent implements OnInit {
 
 
     saveSession() {
-        if (this.day && this.month && this.year) {
+        if (this.day > 0 && this.month > 0 && this.year > 0) {
                 const date = new CustDate();
-                if (date.setDate(this.session.date.day, this.session.date.month, this.session.date.year)) {
+                if (date.setDate(this.day, this.month, this.year)) {
+                    this.session.date = date;
                     this.selectedClass.sessions.sort(
                         (session1, session2) => {
                             return session1.date.valueOf() - session2.date.valueOf();
@@ -67,8 +68,12 @@ export class SessionEditorComponent implements OnInit {
                         this.transmitter.transmitModifiedClass(this.selectedClass);
                     }
                     this.router.navigateByUrl('/class');
+                }  else {
+                    document.getElementById('dateWarning').style.display = 'block';
                 }
-            }
+        } else {
+            document.getElementById('dateWarning').style.display = 'block';
+        }
     }
 }
 
