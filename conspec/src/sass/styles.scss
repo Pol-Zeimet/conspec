@@ -1,7 +1,7 @@
 @import './variables';
 @import './mixins';
 
-$color: aqua;
+$color: #007bff;
 $hoverColor: darken($color, 10);
 $selectedColor: darken($hoverColor, 10);
 

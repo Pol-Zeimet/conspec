@@ -10,13 +10,13 @@ function createWindow () {
     width: 1050,
     height: 600,
     backgroundColor: '#ffffff',
-    icon: `file://${__dirname}/dist/assets/logo.png`,
+    icon: `file://${__dirname}/assets/icons/png/64x64.png`, 
     titleBarStyle: 'hidden'
   })
   win.setMenu(null);
   win.loadURL(`file://${__dirname}/dist/index.html`)
 
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
   
   win.on('closed', function () {
     win = null

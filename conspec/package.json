@@ -1,5 +1,6 @@
 {
   "name": "conspec",
+  "productName": "conspec",
   "version": "0.0.0",
   "license": "MIT",
   "main": "main.js",
@@ -11,7 +12,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "electron": "electron .",
-    "conspec": "ng build --prod && electron ."
+    "conspec": "ng build --prod && electron .",
+    "package-win": "electron-packager . conspec --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"conspec\""   
   },
   "private": true,
   "dependencies": {
