@@ -1,3 +1,7 @@
+<button [disabled] = '(selectedClass === undefined) || (placesLeft.length === 0)' class= 'btn btn-primary' (click) = "createNewMember()"><span class="fa fa-user-plus"></span> Add new Member</button>
+<button [disabled] = '(selectedClass === undefined) || (placesLeft.length === 0)' class= 'btn btn-primary' (click) = "openModal('selectExisting')"><span class="fa fa-address-book"></span> Add existing Member</button>
+<button [disabled] = 'selectedMember === undefined' class="btn btn-primary" (click) = "editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
+<button [disabled] = 'selectedMember === undefined' class="btn btn-primary" (click) = "openModal('remove')"><span class="fa fa-minus"></span> Remove Member from Class</button>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -77,13 +81,9 @@
             </table>
         </div>
         <div class="modal-footer">
-            <button type="button" [disabled] = 'existingMember === undefined' class="btn btn-outline-dark" (click)='addNew(); closeModal("selectExisting")'>Confirm</button>
+            <button type="button" [disabled] = 'existingMember === undefined' class="btn btn-outline-dark" (click)='addNew(); closeModal("selectExisting")'>Add to Class</button>
             <button type="button" class="btn btn-outline-dark" (click)='closeModal("selectExisting")'>Cancel</button>
         </div>
     </div>
 </div>
     
-<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
-<button *ngIf = 'selectedMember' class="btn btn-secondary" (click) = "openModal('remove')"><span class="fa fa-minus"></span> Remove Member from Class</button>
-<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "createNewMember()"><span class="fa fa-user-plus"></span> Add new Member</button>
-<button *ngIf = "(selectedClass) && (placesLeft.length > 0)" class= 'btn btn-primary' (click) = "openModal('selectExisting')"><span class="fa fa-address-book"></span> Add existing Member</button>

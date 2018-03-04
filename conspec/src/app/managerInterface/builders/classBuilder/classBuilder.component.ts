@@ -14,15 +14,19 @@ import { Location } from '@angular/common';
 
 export class ClassBuilderComponent implements OnInit {
 
-    @Input()
     newClass: Class;
+    @Input() name: String;
+    @Input() schedule: String;
+    @Input() places: String;
 
     constructor(
         private transmittter: TransmitterService,
         private classesService: ClassesService,
         private router: Router,
         private location: Location) {
-
+            this.name = '';
+            this.schedule = '';
+            this.places = '';
     }
 
     ngOnInit() {
@@ -33,30 +37,74 @@ export class ClassBuilderComponent implements OnInit {
         this.location.back();
     }
 
-
-    createNewClass() {
-        let valid = true;
-        if (this.newClass.name === '') {
-            valid = false;
-            document.getElementById('nameWarning').style.display = 'block';
+    checkName(): boolean {
+        let isInvalid = false;
+        if (this.name.length > 50 ) {
+            document.getElementById('nameWarning2').style.display = 'block';
+            isInvalid = true;
         } else {
-            document.getElementById('nameWarning').style.display = 'none';
+            document.getElementById('nameWarning2').style.display = 'none';
+            if (this.name.length < 1 ) {
+                document.getElementById('nameWarning').style.display = 'block';
+                isInvalid = true;
+            } else {
+                document.getElementById('nameWarning').style.display = 'none';
+            }
         }
+        return isInvalid;
+    }
 
-        if (this.newClass.shedule === '') {
-            valid = false;
-            document.getElementById('sheduleWarning').style.display = 'block';
+    checkschedule(): boolean {
+        let isInvalid = false;
+        if (this.schedule.length > 80) {
+            isInvalid = true;
+            document.getElementById('scheduleWarning2').style.display = 'block';
         } else {
-            document.getElementById('sheduleWarning').style.display = 'none';
+            document.getElementById('scheduleWarning2').style.display = 'none';
+            if (this.schedule.length < 1 ) {
+                isInvalid = true;
+                document.getElementById('scheduleWarning').style.display = 'block';
+            } else {
+                document.getElementById('scheduleWarning').style.display = 'none';
+            }
         }
-        if (this.newClass.places <= 0 ) {
-            valid = false;
+        return isInvalid;
+    }
+
+    checkPlaces(): boolean {
+        let isInvalid = false;
+        this.places += '';
+        const placesAsNumber = +this.places;
+        if (this.places.length > 2 || placesAsNumber > 40 || placesAsNumber < 1) {
+            isInvalid = true;
             document.getElementById('placesWarning').style.display = 'block';
         } else {
             document.getElementById('placesWarning').style.display = 'none';
         }
+        if (this.places.match('^[0-9]*$')) {
+            document.getElementById('placesWarning2').style.display = 'none';
+        } else {
+            isInvalid = true;
+            document.getElementById('placesWarning2').style.display = 'block';
+        }
+        return isInvalid;
+    }
 
+    createNewClass() {
+        let valid = true;
+        if (this.checkName()) {
+            valid = false;
+        }
+        if (this.checkschedule()) {
+            valid = false;
+        }
+        if (this.checkPlaces()) {
+            valid = false;
+        }
         if (valid) {
+            this.newClass.name = this.name;
+            this.newClass.schedule = this.schedule;
+            this.newClass.places = +this.places;
             const persistedClass = this.classesService.persistClass(this.newClass);
             if (persistedClass) {
                 this.transmittter.transmitAddedClass(persistedClass);
@@ -65,3 +113,4 @@ export class ClassBuilderComponent implements OnInit {
         }
     }
 }
+

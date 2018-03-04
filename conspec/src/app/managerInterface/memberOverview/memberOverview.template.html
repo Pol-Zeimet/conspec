@@ -1,5 +1,8 @@
 <h3>Member Overview</h3>
 <p>There are currently {{members.length}} saved members.</p>
+<button class= 'btn btn-primary' (click)="createNewMember()" ><span class="fa fa-user-plus"></span> Add new Member</button>
+<button [disabled] = 'selectedMember === undefined' class='btn btn-primary' (click)="editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
+<button [disabled] = 'selectedMember === undefined' class='btn btn-primary' (click)="openModal('delete')"><span class="fa fa-trash"></span> Delete Member</button>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -19,7 +22,6 @@
             <td>{{member.tel}}</td>
             <td>{{member.verified}}</td>
             <td>{{member.gotBonus}}</td>
-            
         </tr>
     </tbody>
 </table>
@@ -41,6 +43,3 @@
     </div>
 </div>
   
-<button *ngIf = 'selectedMember' class='btn btn-secondary' (click)="editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
-<button *ngIf = 'selectedMember' class='btn btn-secondary' (click)="openModal('delete')"><span class="fa fa-trash"></span> Delete Member</button>
-<button class= 'btn btn-primary' (click)="createNewMember()" ><span class="fa fa-user-plus"></span> Add new Member</button>

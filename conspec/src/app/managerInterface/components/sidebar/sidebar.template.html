@@ -10,14 +10,17 @@
             <i class="fa fa-caret-down" id ='open'></i>
         </li>
         <ul class="list-group" id = "class-list" style="display: none">
+            <li class="list-group-item" [routerLink]="['/class/new']">
+                <i class="fa fa-plus-circle"></i>
+                Add new Class
+            </li>
             <li *ngFor='let class of classes' class ='list-group-item hoverable' [class.selected] ="class === activeClass" (click)="selectClass(class)">
                 {{class.name}}
             </li>
+            <li *ngIf = "classes.length == 0" class ='list-group-item'>
+                There are no classes yet
+            </li>
         </ul>
-        <li class="list-group-item" [routerLink]="['/class/new']">
-            <i class="fa fa-plus-circle"></i>
-            Add new Class
-        </li>
         <li class="list-group-item" [routerLink]="['/members']">
             <i class="fa fa-users "></i>
             Member OverView

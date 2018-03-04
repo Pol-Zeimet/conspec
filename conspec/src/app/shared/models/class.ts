@@ -9,7 +9,7 @@ export class Class {
     name: String;
     members: Member[];
     sessions: Session[];
-    shedule: String;
+    schedule: String;
     places: number;
 
     constructor() {
@@ -17,7 +17,7 @@ export class Class {
         this.name = '';
         this.members = [];
         this.sessions = [];
-        this.shedule = '';
+        this.schedule = '';
         this.places = 1;
     }
 }

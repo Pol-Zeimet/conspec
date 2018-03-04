@@ -1,10 +1,12 @@
-<h1>ClassManager</h1>
+<h1>Class Manager</h1>
 <div *ngIf = "selectedClass != undefined">
     <div *ngIf = "selectedClass._id != undefined">
         <div>
             <h2>{{selectedClass.name}}</h2>
-            <h5>( {{selectedClass.shedule}} )</h5>
+            <h5>( {{selectedClass.schedule}} )</h5>
         </div>
+        <button  class='btn btn-primary' (click)="editClass()"><span class="fa fa-wrench"></span> Edit Class</button>
+        <button  class='btn btn-primary' (click)="openModal('delete')"><span class="fa fa-trash"></span> Delete Class</button>
         <ngb-tabset>
             <ngb-tab>
                 <ng-template ngbTabTitle>Sessions</ng-template>
@@ -36,8 +38,6 @@
                 </div>
             </div>
         </div>
-        <button  class='btn btn-primary' (click)="editClass()"><span class="fa fa-wrench"></span> Edit Class</button>
-        <button  class='btn btn-primary' (click)="openModal('delete')"><span class="fa fa-trash"></span> Delete Class</button>
     </div>
 </div>
 <div *ngIf ="selectedClass === undefined || selectedClass._id === undefined">

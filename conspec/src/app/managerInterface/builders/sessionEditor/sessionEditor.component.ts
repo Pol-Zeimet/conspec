@@ -18,9 +18,9 @@ import { LoggerService } from '../../../shared/services/loggerService';
 export class SessionEditorComponent implements OnInit {
 
     @Input() session: Session;
-    @Input() day: Number;
-    @Input() month: Number;
-    @Input() year: Number;
+    @Input() day: String;
+    @Input() month: String;
+    @Input() year: String;
     private selectedClass: Class;
 
     constructor(private transmitter: TransmitterService,
@@ -34,9 +34,9 @@ export class SessionEditorComponent implements OnInit {
         this.transmitter.transmittedSession$.subscribe(
             sessionData => {
                 this.session = sessionData;
-                this.day = this.session.date.day;
-                this.month = this.session.date.month;
-                this.year = this.session.date.year;
+                this.day = this.session.date.day.toString();
+                this.month = this.session.date.month.toString();
+                this.year = this.session.date.year.toString();
             }
         );
         this.transmitter.activeClass$.subscribe(
@@ -54,11 +54,18 @@ export class SessionEditorComponent implements OnInit {
         relation.state = state;
     }
 
+    checkInput(input: String): boolean {
+        input += '';
+        if (input.length <= 4 && input.length > 0 && input.match('^[0-9]*$')) {
+            return true;
+        }
+        return false;
+    }
 
     saveSession() {
-        if (this.day > 0 && this.month > 0 && this.year > 0) {
+        if (this.checkInput(this.day) && this.checkInput(this.month) && this.checkInput(this.year)) {
                 const date = new CustDate();
-                if (date.setDate(this.day, this.month, this.year)) {
+                if (date.setDate(+this.day, +this.month, +this.year)) {
                     this.session.date = date;
                     this.selectedClass.sessions.sort(
                         (session1, session2) => {

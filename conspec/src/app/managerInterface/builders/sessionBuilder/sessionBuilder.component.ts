@@ -16,9 +16,9 @@ import { Location } from '@angular/common';
 
 export class SessionBuilderComponent implements OnInit {
     @Input() session: Session;
-    @Input() day: Number;
-    @Input() month: Number;
-    @Input() year: Number;
+    @Input() day: String;
+    @Input() month: String;
+    @Input() year: String;
     private selectedClass: Class;
 
     constructor(private transmitter: TransmitterService,
@@ -26,9 +26,9 @@ export class SessionBuilderComponent implements OnInit {
                 private classesService: ClassesService,
                 private router: Router,
                 private location: Location) {
-                    this.day = 1;
-                    this.month = 1;
-                    this.year = 2000;
+                    this.day = '';
+                    this.month = '';
+                    this.year = '';
     }
 
     ngOnInit() {
@@ -58,10 +58,17 @@ export class SessionBuilderComponent implements OnInit {
         relation.state = state;
     }
 
+    checkInput(input: String): boolean {
+        input += '';
+        if (input.length <= 4 && input.length > 0 && input.match('^[0-9]*$')) {
+            return true;
+        }
+        return false;
+    }
 
     saveSession() {
-        if (this.day > 0 && this.month > 0 && this.year > 0) {
-                if (this.session.date.setDate(this.day, this.month, this.year)) {
+        if (this.checkInput(this.day) && this.checkInput(this.month) && this.checkInput(this.year)) {
+                if (this.session.date.setDate(+this.day, +this.month, +this.year)) {
                     this.selectedClass.sessions.push(this.session);
                     this.selectedClass.sessions.sort(
                         (session1, session2) => {

@@ -39,20 +39,33 @@ export class MemberBuilderComponent implements OnInit {
         this.location.back();
     }
 
+    checkInput(input: String, minlength, maxlength: number, isNumber: boolean, warningId: string): boolean {
+        let isInvalid = false;
+        if (input.length < minlength || input.length > maxlength || (isNumber && !input.match('^[0-9]*$'))) {
+            isInvalid = true;
+            document.getElementById(warningId).style.display = 'block';
+        } else {
+            document.getElementById(warningId).style.display = 'none';
+        }
+        return isInvalid;
+    }
+
     saveMember() {
         let valid = true;
-        if (this.member.name === '') {
+        if (this.checkInput(this.member.name, 1, 25, false, 'nameWarning')) {
             valid = false;
-            document.getElementById('nameWarning').style.display = 'block';
-        } else {
-            document.getElementById('nameWarning').style.display = 'none';
         }
 
-        if (this.member.lastName === '') {
+        if (this.checkInput(this.member.lastName, 1, 25, false, 'lastNameWarning')) {
             valid = false;
-            document.getElementById('lastNameWarning').style.display = 'block';
-        } else {
-            document.getElementById('lastNameWarning').style.display = 'none';
+        }
+
+        if (this.checkInput(this.member.email, 0, 30, false, 'emailWarning')) {
+            valid = false;
+        }
+
+        if (this.checkInput(this.member.tel, 0, 30, true, 'phoneWarning')) {
+            valid = false;
         }
 
         if (valid) {

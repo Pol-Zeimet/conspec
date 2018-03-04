@@ -1,37 +1,50 @@
 <h1>Editing Class</h1>
 
-<button class="btn btn-primary" (click) = "goBack()"><i class="fa fa-chevron-left"></i> Back</button>    
+<button class="btn btn-primary" (click)="goBack()">
+    <i class="fa fa-chevron-left"></i> Back</button>
 <div class="card">
     <div class="card-block">
-      <form>
-        <div class="form-group">
-            <label for="className">Class name</label>
-            <input class="form-control" id="className" aria-describedby="nameHelp" placeholder="Name" [(ngModel)] = "selectedClass.name" name="className">
-            <div class="alert alert-danger" id ='nameWarning' style = 'display: none' role="alert">
-                Please enter the name for the class.
+        <form>
+            <div class="form-group">
+                <label for="className">Class name</label>
+                <input class="form-control" id="className" aria-describedby="nameHelp" placeholder="Name" [(ngModel)]="name" name="className">
+                <div class="alert alert-danger" id='nameWarning' style='display: none' role="alert">
+                    Please enter the name for the class.
+                </div>
+                <div class="alert alert-danger" id='nameWarning2' style='display: none' role="alert">
+                    The name may only contain up to 50 characters.
+                </div>
+                <small id="nameHelp" class="form-text text-muted">The name by which the class will be listed</small>
             </div>
-            <small id="nameHelp" class="form-text text-muted">The name by which the class will be listed</small>
-        </div>
-        <div class="form-group">
-            <label for="classShedule">Class shedule</label>
-            <input class="form-control" id="classShedule" aria-describedby="sheduleHelp" placeholder="Shedule" [(ngModel)] = "selectedClass.shedule" name="classShedule">
-            <div class="alert alert-danger" id ='sheduleWarning' style = 'display: none' role="alert">
-                Please enter a shedule.
+            <div class="form-group">
+                <label for="classschedule">Class schedule</label>
+                <input class="form-control" id="classschedule" aria-describedby="scheduleHelp" placeholder="schedule" [(ngModel)]="schedule"
+                    name="classschedule">
+                <div class="alert alert-danger" id='scheduleWarning' style='display: none' role="alert">
+                    Please enter a schedule.
+                </div>
+                <div class="alert alert-danger" id='scheduleWarning2' style='display: none' role="alert">
+                    The amount of characters ist limited to 80.
+                </div>
+                <small id="scheduleHelp" class="form-text text-muted">Weekday and time of the Class, i.e. Thursday 18:00-19:30</small>
             </div>
-            <small id="sheduleHelp" class="form-text text-muted">Weekday and time of the Class, i.e. Thursday 18:00-19:30</small>
-        </div>
-        <div class="form-group">
-            <label for="classPlaces">Available Places</label>
-            <input type="number" min = '1' class="form-control" id="classPlaces" aria-describedby="placesHelp" placeholder="Number of Places" [(ngModel)] = "selectedClass.places" name="classPlaces">
-            <div class="alert alert-danger" id ='placesWarning' style = 'display: none' role="alert">
-                The Amount of places must be greater than 0.
+            <div class="form-group">
+                <label for="classPlaces">Available Places</label>
+                <input type="number" min='1' max='40' class="form-control" id="classPlaces" aria-describedby="placesHelp" placeholder="Number of Places"
+                    [(ngModel)]="places" name="classPlaces">
+                <div class="alert alert-danger" id='placesWarning' style='display: none' role="alert">
+                    The amount of places must be a whole number between 1 and 40.
+                </div>
+                <div class="alert alert-danger" id='placesWarning2' style='display: none' role="alert">
+                    You may only enter whole numbers.
+                </div>
+                <div class="alert alert-danger" id='placesWarning3' style='display: none' role="alert">
+                    The amount of places can not be smaller than the number of members already in the class.
+                </div>
+                <small id="placesHelp" class="form-text text-muted">The amount of available places in the class</small>
             </div>
-            <div class="alert alert-danger" id ='placesWarning2' style = 'display: none' role="alert">
-                The amount of places can not be smaller than the number of members already in the class.
-            </div>
-            <small id="placesHelp" class="form-text text-muted">The amount of available places in the class</small>
-        </div>
-      </form>
-      <button class="btn btn-primary" (click) = "saveClass()"> <i class="fa fa-save"></i> Save Class</button>    
+        </form>
+        <button class="btn btn-primary" (click)="saveClass()">
+            <i class="fa fa-save"></i> Save Class</button>
     </div>
-  </div>
+</div>
