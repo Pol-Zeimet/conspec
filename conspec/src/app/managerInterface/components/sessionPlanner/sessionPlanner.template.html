@@ -1,8 +1,13 @@
-<table *ngIf = "selectedClass.sessions.length > 0" class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope = "col">Name</th>
-            <th *ngFor = "let session of selectedClass.sessions" 
+<h5> Click on a session date to select a session </h5>
+<button class= 'btn btn-primary' (click) = "addNewSession()"><i class="fa fa-calendar-plus-o"></i> Add new Session</button>
+<button [disabled] = "selectedSession === undefined" class= 'btn btn-primary'(click) = "editSession()"><i class="fa fa-wrench"></i> Edit Session</button>
+<button [disabled] = "selectedSession === undefined" class="btn btn-primary" (click) = "openModal('remove')"><i class="fa fa-trash"></i> Delete Session</button>
+<div class='table-wrapper'>
+    <table *ngIf = "selectedClass.sessions.length > 0" class="table table-bordered session-table">
+        <thead>
+            <tr>
+                <th scope = "col">Name</th>
+                <th *ngFor = "let session of selectedClass.sessions" 
                 class="hoverable" 
                 [class.selected] ="session === selectedSession" 
                 scope = "col" 
@@ -22,7 +27,8 @@
             </td>
         </tr>
     </tbody>
-</table>
+    </table>
+</div>
 <div *ngIf = "selectedClass.sessions.length == 0">
     <p>There are no sessions yet for this class</p>
 </div>
@@ -42,6 +48,3 @@
         </div>
     </div>
 
-<button class= 'btn btn-primary' (click) = "addNewSession()"><i class="fa fa-calendar-plus-o"></i> Add new Session</button>
-<button [disabled] = "selectedSession === undefined" class= 'btn btn-primary'(click) = "editSession()"><i class="fa fa-wrench"></i> Edit Session</button>
-<button [disabled] = "selectedSession === undefined" class="btn btn-primary" (click) = "openModal('remove')"><i class="fa fa-trash"></i> Delete Session</button>

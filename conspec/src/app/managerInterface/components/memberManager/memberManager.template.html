@@ -2,48 +2,50 @@
 <button [disabled] = '(selectedClass === undefined) || (placesLeft.length === 0)' class= 'btn btn-primary' (click) = "openModal('selectExisting')"><span class="fa fa-address-book"></span> Add existing Member</button>
 <button [disabled] = 'selectedMember === undefined' class="btn btn-primary" (click) = "editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
 <button [disabled] = 'selectedMember === undefined' class="btn btn-primary" (click) = "openModal('remove')"><span class="fa fa-minus"></span> Remove Member from Class</button>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope = "col">Name</th>
-            <th scope = "col">Last Name</th>
-            <th scope = "col">Email</th>
-            <th scope = "col">Phone Number</th>
-            <th scope = "col">Verified</th>
-            <th scope = "col">Bonus</th>
-        </tr>
-    </thead>
-    <tbody *ngIf = "selectedClass">
-        <tr *ngFor = "let member of selectedClass.members" class="hoverable" [class.selected] ="member === selectedMember" (click) = 'select(member)'>
-            <td>{{member.name}}</td>
-            <td>{{member.lastName}}</td>
-            <td>{{member.email}}</td>
-            <td>{{member.tel}}</td>
-            <td>{{member.verified}}</td>
-            <td>{{member.gotBonus}}</td>
-            
-        </tr>
-        <tr *ngFor = "let place of placesLeft">
-            <td>Free place</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
-
-<div id="remove" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Removing Member</h4>
-            <span class="close" (click) = 'closeModal("remove")'>&times;</span>
-        </div>
-        <div class="modal-body">
-            <p>This will remove the selected Member from the class, but not delete it entirely.</p>
-        </div>
-        <div class="modal-footer">
+<div class = 'table-wrapper'>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope = "col">Name</th>
+                <th scope = "col">Last Name</th>
+                <th scope = "col">Email</th>
+                <th scope = "col">Phone Number</th>
+                <th scope = "col">Verified</th>
+                <th scope = "col">Bonus</th>
+            </tr>
+        </thead>
+        <tbody *ngIf = "selectedClass">
+            <tr *ngFor = "let member of selectedClass.members" class="hoverable" [class.selected] ="member === selectedMember" (click) = 'select(member)'>
+                <td>{{member.name}}</td>
+                <td>{{member.lastName}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.tel}}</td>
+                <td>{{member.verified}}</td>
+                <td>{{member.gotBonus}}</td>
+                
+            </tr>
+            <tr *ngFor = "let place of placesLeft">
+                <td>Free place</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    
+    <div id="remove" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Removing Member</h4>
+                <span class="close" (click) = 'closeModal("remove")'>&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>This will remove the selected Member from the class, but not delete it entirely.</p>
+            </div>
+            <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" [disabled] = 'selectedMember === undefined' (click)='removeMemberFromClass(); closeModal("remove")'>Confirm</button>
             <button type="button" class="btn btn-outline-dark" (click)='closeModal("remove")'>Cancel</button>
         </div>

@@ -20,34 +20,36 @@
             </div>
         </div>
         <h5>Presences:</h5>
-        <table *ngIf='session.presences.length > 0' class="table table-bordered">
-            <thead>
+        <div class='table-wrapper'>
+            <table *ngIf='session.presences.length > 0' class="table table-bordered">
+                <thead>
                     <th scope ="col">Name</th>
                     <th scope ="col">Present</th>
                     <th scope ="col">Excused</th>
                     <th scope ="col">Missing</th>
-            </thead>
-            <tbody class ="table">
-                <tr *ngFor = "let memberSessionRelation of session.presences">
-                    <td>{{memberSessionRelation.member.name}} {{memberSessionRelation.member.lastName}}</td>
-                    <td>
-                        <form>
-                            <input type="radio" name="state" [checked]="memberSessionRelation.state === 'present'" (click)="setState(memberSessionRelation, 'present')">
-                        </form>  
-                    </td>
-                    <td>
-                        <form>
-                            <input type="radio" name="state" [checked]="memberSessionRelation.state === 'excused'" (click)="setState(memberSessionRelation, 'excused')">
-                        </form>  
-                    </td>
-                    <td>
-                        <form>
-                            <input type="radio" name="state" [checked]="memberSessionRelation.state === 'missing'" (click)="setState(memberSessionRelation, 'missing')">
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody class ="table">
+                    <tr *ngFor = "let memberSessionRelation of session.presences">
+                        <td>{{memberSessionRelation.member.name}} {{memberSessionRelation.member.lastName}}</td>
+                        <td>
+                            <form>
+                                <input type="radio" name="state" [checked]="memberSessionRelation.state === 'present'" (click)="setState(memberSessionRelation, 'present')">
+                            </form>  
+                        </td>
+                        <td>
+                            <form>
+                                <input type="radio" name="state" [checked]="memberSessionRelation.state === 'excused'" (click)="setState(memberSessionRelation, 'excused')">
+                            </form>  
+                        </td>
+                        <td>
+                            <form>
+                                <input type="radio" name="state" [checked]="memberSessionRelation.state === 'missing'" (click)="setState(memberSessionRelation, 'missing')">
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div *ngIf='session.presences.length == 0'>
             <h5 class="warning">There are currently no Members in the Class</h5>
         </div>

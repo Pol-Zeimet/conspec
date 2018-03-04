@@ -1,9 +1,20 @@
-@import './variables';
-@import './mixins';
 
 $color: #007bff;
 $hoverColor: darken($color, 10);
 $selectedColor: darken($hoverColor, 10);
+
+
+.body {
+    font-size: small;
+}
+
+.btn-primary {
+    background-color: $color;
+}
+
+.btn-primary:hover {
+    background-color: $hoverColor;
+}
 
 .wrapper {
     display: flex;
@@ -13,6 +24,52 @@ $selectedColor: darken($hoverColor, 10);
 .selected {
     background-color: $selectedColor;
     color: white;
+}
+
+.table-wrapper {
+    overflow: auto;
+    border: 1px;
+    border-color: #dddddd;
+    border-style: double;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    max-height: 60vh;
+}
+
+.table {
+    font-weight: 400;
+    font-size: small;
+    margin-bottom: 0px;
+}
+
+.tab-content {
+    margin-top: 5px;
+}
+
+.nav.nav-tabs.justify-content-start{
+    margin-top: 5px;
+}
+
+.nav-tabs{
+    border-color: $color;
+}
+
+.nav-link{
+    border: 1px !important;
+    border-style: solid !important;
+    border-color: $color !important;
+}
+
+.nav-link.active{
+    background-color: $color !important;
+    border: 1px !important;
+    border-style: solid !important;
+    border-color: $color !important;
+    color: white !important;
+}
+table.session-table td{
+    min-width: 90px !important;
+    max-width: 90px !important;
 }
 
 .hoverable {
@@ -41,14 +98,10 @@ $selectedColor: darken($hoverColor, 10);
     padding: 0px;
 }
 
-.btn {
-    margin-bottom: 5px;
-}
-
 #class-list{
     display: none;
     overflow-y: overlay;
-    max-height: 300px;
+    max-height: 60vh;
 }
 
 #open{
@@ -66,6 +119,8 @@ $selectedColor: darken($hoverColor, 10);
 }
 .sidebar-header{
     padding-left: 13.5px;
+    color: white;
+    margin-bottom: 5px;
 }
 
 .navbar {
@@ -134,6 +189,7 @@ app-manager-sidebar {
 .close {
     color: #aaa;
     float: right;
+    padding-top: 0px !important;
     font-size: 28px;
     font-weight: bold;
 }

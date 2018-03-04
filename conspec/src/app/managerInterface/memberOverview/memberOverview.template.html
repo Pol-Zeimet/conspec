@@ -1,30 +1,32 @@
 <h3>Member Overview</h3>
-<p>There are currently {{members.length}} saved members.</p>
+<h5>There are currently {{members.length}} saved members.</h5>
 <button class= 'btn btn-primary' (click)="createNewMember()" ><span class="fa fa-user-plus"></span> Add new Member</button>
 <button [disabled] = 'selectedMember === undefined' class='btn btn-primary' (click)="editMember()"><span class="fa fa-wrench"></span> Edit Selected Member</button>
 <button [disabled] = 'selectedMember === undefined' class='btn btn-primary' (click)="openModal('delete')"><span class="fa fa-trash"></span> Delete Member</button>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope = "col">Name</th>
-            <th scope = "col">Last Name</th>
-            <th scope = "col">Email</th>
-            <th scope = "col">Phone Number</th>
-            <th scope = "col">Verified</th>
-            <th scope = "col">Bonus</th>
-        </tr>
-    </thead>
-    <tbody *ngIf = "members.length > 0" class ="table">
-        <tr *ngFor = "let member of members" class="hoverable" [class.selected] ="member === selectedMember" (click) = 'select(member)'>
-            <td>{{member.name}}</td>
-            <td>{{member.lastName}}</td>
-            <td>{{member.email}}</td>
-            <td>{{member.tel}}</td>
-            <td>{{member.verified}}</td>
-            <td>{{member.gotBonus}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class='table-wrapper'>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope = "col">Name</th>
+                <th scope = "col">Last Name</th>
+                <th scope = "col">Email</th>
+                <th scope = "col">Phone Number</th>
+                <th scope = "col">Verified</th>
+                <th scope = "col">Bonus</th>
+            </tr>
+        </thead>
+        <tbody *ngIf = "members.length > 0" class ="table">
+            <tr *ngFor = "let member of members" class="hoverable" [class.selected] ="member === selectedMember" (click) = 'select(member)'>
+                <td>{{member.name}}</td>
+                <td>{{member.lastName}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.tel}}</td>
+                <td>{{member.verified}}</td>
+                <td>{{member.gotBonus}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 
 <div id="delete" class="modal">
