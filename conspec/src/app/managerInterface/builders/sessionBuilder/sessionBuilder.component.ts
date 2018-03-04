@@ -72,7 +72,16 @@ export class SessionBuilderComponent implements OnInit {
                     this.selectedClass.sessions.push(this.session);
                     this.selectedClass.sessions.sort(
                         (session1, session2) => {
-                            return session1.date.valueOf() - session2.date.valueOf();
+                            const yearDiff = session1.date.year.valueOf() - session2.date.year.valueOf();
+                            const monthDiff = session1.date.month.valueOf() - session2.date.month.valueOf();
+                            const dayDiff = session1.date.day.valueOf() - session2.date.day.valueOf();
+                            if ( yearDiff !== 0) {
+                                return yearDiff;
+                            } else if (monthDiff !== 0) {
+                                return monthDiff;
+                            } else {
+                                return dayDiff;
+                            }
                         });
                     if (this.classesService.updateClass(this.selectedClass)) {
                         this.transmitter.transmitModifiedClass(this.selectedClass);

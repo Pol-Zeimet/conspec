@@ -28,7 +28,14 @@ export class MemberOverviewComponent implements OnInit {
     ngOnInit(): void {
         this.memberService.getAllMembers()
             .then(
-                memberArray => this.members = memberArray
+                memberArray => this.members = memberArray.sort((a, b) => {
+                    if (a.name < b.name) {
+                        return -1;
+                    } else if (a.name > b.name) {
+                        return 1;
+                    }
+                    return 0;
+                })
             );
     }
 

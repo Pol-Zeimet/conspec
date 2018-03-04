@@ -35,7 +35,14 @@ export class MemberManagerComponent implements OnInit {
                 if (data) {
                     this.selectedClass = data;
                     this.placesLeft = new Array<Number>(this.selectedClass.places - this.selectedClass.members.length).fill(0);
-                    this.getAvailableMembers().then(members => this.availableMembers = members);
+                    this.getAvailableMembers().then(members => this.availableMembers = members.sort((a, b) => {
+                        if (a.name < b.name) {
+                            return -1;
+                        } else if (a.name > b.name) {
+                            return 1;
+                        }
+                        return 0;
+                    }));
                 }
             }
         );
@@ -54,7 +61,14 @@ export class MemberManagerComponent implements OnInit {
                                     return listMember._id.toString() === member._id.toString();
                                 }), 1);
                             });
-                            array = memberArray;
+                        array = memberArray.sort((a, b) => {
+                            if (a.name < b.name) {
+                                return -1;
+                            } else if (a.name > b.name) {
+                                return 1;
+                            }
+                            return 0;
+                        });
                         }
                     )
             .then( () => reveal(array));

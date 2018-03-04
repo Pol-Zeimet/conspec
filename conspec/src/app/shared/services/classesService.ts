@@ -34,6 +34,14 @@ export class ClassesService {
                             succ = false;
                         }
                     });
+                    classes.sort((a, b) => {
+                        if (a.name < b.name) {
+                            return -1;
+                        } else if (a.name > b.name) {
+                            return 1;
+                        }
+                        return 0;
+                    });
                     if (!succ) {
                         logger.displayError('Internal data error',
                                             'Could not parse content of Database to class while reading', err);

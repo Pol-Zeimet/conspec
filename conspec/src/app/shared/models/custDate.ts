@@ -82,10 +82,6 @@ export class CustDate {
         }
     }
 
-    valueOf(): number {
-        return this.day.valueOf()  + this.month.valueOf() + this.year.valueOf() ;
-    }
-
     toString(): string {
         return this.day.toString() + '.' + this.month.toString() + '.' + this.year.toString();
     }

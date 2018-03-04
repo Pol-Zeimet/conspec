@@ -21,7 +21,14 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         this.classesService.getAllClasses()
-            .then(fetchedClasses => this.classes = fetchedClasses)
+            .then(fetchedClasses => this.classes = fetchedClasses.sort((a, b) => {
+                if (a.name < b.name) {
+                    return -1;
+                } else if (a.name > b.name) {
+                    return 1;
+                }
+                return 0;
+            }))
             .then(() => {
                 this.transmitter.addedClass$.subscribe(
                     data => {
