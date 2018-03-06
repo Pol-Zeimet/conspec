@@ -9,15 +9,22 @@ function createWindow () {
   win = new BrowserWindow({
     width: 1050,
     height: 600,
-    backgroundColor: '#ffffff',
+    minWidth: 1050,
+    minHeight: 600,
+    backgroundColor: '#007bff',
+    show: false,
     icon: `file://${__dirname}/assets/icons/png/64x64.png`, 
     titleBarStyle: 'hidden'
   })
   win.setMenu(null);
   win.loadURL(`file://${__dirname}/dist/index.html`)
 
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
   
+  win.once('ready-to-show', () => {
+    win.show()
+})
+
   win.on('closed', function () {
     win = null
   })

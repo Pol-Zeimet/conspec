@@ -13,7 +13,8 @@
     "e2e": "ng e2e",
     "electron": "electron .",
     "conspec": "ng build --prod && electron .",
-    "package-win": "electron-packager . conspec --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"conspec\""   
+    "package-win": "electron-packager . conspec --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"conspec\"",
+    "package-ios": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/favicon.icns --prune=true --out=release-builds"
   },
   "private": true,
   "dependencies": {
