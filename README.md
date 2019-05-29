@@ -19,7 +19,7 @@ For more information concerning the cli commands, please check out the <strong>p
 <li>Browserwindow in mac not moveable (high priority)</li>
 <li>Deleted classses are still saved in cache. A deleted class may be "resurrected" by chrome loading the cache. Deleting the class again will lead to a undefined data base error. <br>
 Reproduction: create new class in empty class list >> delete the class >> press "create class" button >> press "Back". </li>
-<li>Checkboxes dont are about the stylesheet, this is only visually unpleasent.</li>
+<li>Checkboxes dont care about the stylesheet. However this is only visually unpleasent.</li>
 <li>Creating a new Member in the member overview sometimes requires 2 clicks on the button due to a rare internal error. This need further investigating.</li>
 <li>High number of dependencies. This needs to be adressed</li>
 </ul>
