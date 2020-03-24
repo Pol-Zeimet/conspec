@@ -1,3 +1,9 @@
+# Disclaimer:
+:warning:This Project is no longer functional due to outdated dependencies.:warning:
+
+:warning:Fixing it would require more time than I deem the project to be worth it.:warning:
+
+
 # conspec
 Management System for training classes.
 This application was created during a practical assignment at the university of applied sciences Karlsruhe <a href = "https://www.hs-karlsruhe.de/home.html">https://www.hs-karlsruhe.de/home.html</a><br>
