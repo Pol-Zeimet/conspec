@@ -1,7 +1,7 @@
 # Disclaimer:
 :warning:This Project is no longer functional due to outdated dependencies.:warning:
 
-:warning:Fixing it would require more time than I deem the project to be worth it.:warning:
+:warning:Fixing the project would require more time than I deem it to be worth.:warning:
 
 
 # conspec
